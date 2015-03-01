@@ -1,3 +1,4 @@
+#!/bin/sh
 cat $1 | awk '
      BEGIN { FS=" " } {
          for (i=1; i<=NF; i++) {

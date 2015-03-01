@@ -1,6 +1,7 @@
-sqlite3 loadStoneDataBase <<EOS
+#!/bin/sh
+sqlite3 loadStoneDataBase.db <<EOS
 .headers on
-CREATE TABLE cala_polska (
+CREATE TABLE TotalData (
     "name" TEXT,
     "latitude" REAL,
     "longitude" REAL,
@@ -11,7 +12,10 @@ CREATE TABLE cala_polska (
     "id" INTEGER
 );
 .separator ,
-.import $1 cala_polska 
+.import $1 TotalData
+ CREATE TABLE DatabaseInfo ( version INT, createdDate DATETIME, accessedDate DATETIME);
+ INSERT INTO DatabaseInfo(version, createdDate, accessedDate) VALUES (1,datetime('now'),datetime('now'));
 .tables
-.schema cala_polska
+.schema TotalData
+.schema DatabaseInfo
 EOS
