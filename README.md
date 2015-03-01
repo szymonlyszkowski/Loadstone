@@ -1,5 +1,11 @@
-## Loadstone
+#Loadstone
 **My Bacherol Thesis**
+
+##Dependencies:
+There are 2 dependencies which are required to build jar correctly. They are not included in maven repository. You have to add za directory to your local maven repository.
+In linux you can just type:
+	
+	mv za/ ~/.m2/repository/
 
 ###Processing scripts:
 
