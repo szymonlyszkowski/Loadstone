@@ -16,7 +16,7 @@ public class TotalData {
     private double latitude;
     private double longitude;
     private double accuracy;
-    private int sattelites;
+    private int satellites;
     private int priority;
     private int userid;
 
@@ -55,12 +55,12 @@ public class TotalData {
         this.accuracy = accuracy;
     }
 
-    public int getSattelites() {
-        return sattelites;
+    public int getSatellites() {
+        return satellites;
     }
 
-    public void setSattelites(int sattelites) {
-        this.sattelites = sattelites;
+    public void setSatellites(int satellites) {
+        this.satellites = satellites;
     }
 
     public int getPriority() {

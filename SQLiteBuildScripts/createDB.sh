@@ -6,7 +6,7 @@ CREATE TABLE TotalData (
     "latitude" REAL,
     "longitude" REAL,
     "accuracy" REAL,
-    "sattelites" INTEGER,
+    "satellites" INTEGER,
     "priority" INTEGER,
     "userid" INTEGER,
     "id" INTEGER
