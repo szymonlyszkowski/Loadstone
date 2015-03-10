@@ -13,21 +13,7 @@ import static junit.framework.TestCase.assertEquals;
  */
 public class LoadstoneDatabaseModelTest {
 
-    private static final String DATABASE_NAME = "loadStoneDataBase.db";
-    private static final int DATABASE_VERSION = 1;
     private static final String[] TOTAL_DATA_COLUMNS = { "name", "latitude", "longitude", "accuracy", "satellites", "priority", "userid", "id" };
-
-    @Test
-    public void shouldReadDatabaseName() throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        LoadstoneDatabaseModel loadStoneDatabaseModel = new LoadstoneDatabaseModel();
-        assertEquals(DATABASE_NAME, loadStoneDatabaseModel.getDatabaseName());
-    }
-
-    @Test
-    public void shouldReadDatabaseVersion() throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
-        assertEquals(DATABASE_VERSION, loadstoneDatabaseModel.getDatabaseVersion());
-    }
 
     @Test
     public void shouldReturnTotalDataClass() throws NoSuchFieldException, SQLException, ClassNotFoundException {
@@ -36,7 +22,7 @@ public class LoadstoneDatabaseModelTest {
     }
 
     @Test
-    public void checkTotalDataTableColumns() throws NoSuchFieldException, SQLException, ClassNotFoundException {
+    public void shouldCheckTotalDataTableColumns() throws NoSuchFieldException, SQLException, ClassNotFoundException {
         LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
         ObjectModelColumn[] totalDataColumns = loadstoneDatabaseModel.getObjectModel(TotalData.class).getObjectModelColumns();
         assertEquals(TOTAL_DATA_COLUMNS.length, totalDataColumns.length);

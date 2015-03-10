@@ -8,10 +8,6 @@ import za.co.neilson.sqlite.orm.annotations.PrimaryKey;
 
 public class TotalData {
 
-    /**
-     * @author Szymon.Lyszkowski@tomtom.com on 08.02.15.
-     */
-
     private String name;
     private double latitude;
     private double longitude;
