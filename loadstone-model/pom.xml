@@ -5,12 +5,17 @@
     <parent>
         <artifactId>Loadstone</artifactId>
         <groupId>loadstone</groupId>
-        <version>1.8-SNAPSHOT</version>
+        <version>${loadstoneVersion}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>loadstone-model</artifactId>
     <packaging>jar</packaging>
+
+    <build>
+
+    </build>
+
 
     <dependencies>
         <dependency>
