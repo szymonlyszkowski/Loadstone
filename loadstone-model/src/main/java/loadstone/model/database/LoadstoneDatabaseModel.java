@@ -16,16 +16,15 @@ import java.util.HashMap;
 public class LoadstoneDatabaseModel extends
         DatabaseModel<ResultSet, HashMap<String, Object>> {
 
-    public static void setLoadstoneDatabaseName(String loadstoneDatabaseName) {
-        LoadstoneDatabaseModel.loadstoneDatabaseName = loadstoneDatabaseName;
-    }
-
     private static String loadstoneDatabaseName;
 
     public LoadstoneDatabaseModel() throws SQLException, ClassNotFoundException,
             NoSuchFieldException {
         super((Object[]) null);
-        LoadstoneDatabaseModel.loadstoneDatabaseName = "loadStoneDataBase.db";
+    }
+
+    public static void setLoadstoneDatabaseName(String loadstoneDatabaseName) {
+        LoadstoneDatabaseModel.loadstoneDatabaseName = loadstoneDatabaseName;
     }
 
     /*

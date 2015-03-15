@@ -1,8 +1,12 @@
 package loadstone.api.connection;
 
 import loadstone.model.database.LoadstoneDatabaseModel;
+import loadstone.model.object.TotalData;
+import za.co.neilson.sqlite.orm.ObjectModel;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 15.03.15.
@@ -26,14 +30,17 @@ public class LoadstoneDatabase {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public static LoadstoneDatabaseModel getLoadstoneSingleton(String databaseName) throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
+    public static ObjectModel<TotalData, ResultSet, HashMap<String, Object>> getLoadstoneSingleton(String databaseName)
+            throws NoSuchFieldException, SQLException, ClassNotFoundException {
         LoadstoneDatabaseModel.setLoadstoneDatabaseName(databaseName);
-        return loadstoneDatabaseModel;
-
+        LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
+        return loadstoneDatabaseModel.getObjectModel(TotalData.class);
     }
 
-    public static LoadstoneDatabaseModel getDefaultLoadstoneSingleton() throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        return new LoadstoneDatabaseModel();
+    public static ObjectModel<TotalData, ResultSet, HashMap<String, Object>> getDefaultLoadstoneSingleton()
+            throws NoSuchFieldException, SQLException, ClassNotFoundException {
+        LoadstoneDatabaseModel.setLoadstoneDatabaseName("loadStoneDataBase.db");
+        LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
+        return loadstoneDatabaseModel.getObjectModel(TotalData.class);
     }
 }

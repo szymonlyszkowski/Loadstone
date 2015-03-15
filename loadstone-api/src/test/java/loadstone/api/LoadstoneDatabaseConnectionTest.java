@@ -1,9 +1,14 @@
 package loadstone.api;
 
+import loadstone.api.connection.LoadstoneDatabase;
 import loadstone.model.database.LoadstoneDatabaseModel;
+import loadstone.model.object.TotalData;
 import org.junit.Test;
+import za.co.neilson.sqlite.orm.ObjectModel;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
@@ -19,6 +24,18 @@ public class LoadstoneDatabaseConnectionTest {
     @Test
     public void shouldReadDatabase() throws NoSuchFieldException, SQLException, ClassNotFoundException {
         LoadstoneDatabaseModel loadStoneDatabaseModel = new LoadstoneDatabaseModel();
+        assertNotNull(loadStoneDatabaseModel);
+    }
+
+    @Test
+    public void shouldReadDatabaseSingletonDefault() throws NoSuchFieldException, SQLException, ClassNotFoundException {
+        ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getDefaultLoadstoneSingleton();
+        assertNotNull(loadStoneDatabaseModel);
+    }
+
+    @Test
+    public void shouldReadDatabaseSingletonNameDefined() throws NoSuchFieldException, SQLException, ClassNotFoundException {
+        ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getLoadstoneSingleton(DATABASE_NAME);
         assertNotNull(loadStoneDatabaseModel);
     }
 
