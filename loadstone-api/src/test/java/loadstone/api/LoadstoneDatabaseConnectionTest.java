@@ -26,6 +26,7 @@ public class LoadstoneDatabaseConnectionTest {
         LoadstoneDatabaseModel loadStoneDatabaseModel = new LoadstoneDatabaseModel();
         assertNotNull(loadStoneDatabaseModel);
     }
+
     @Test
     public void shouldReadDatabaseSingletonNameDefined() throws NoSuchFieldException, SQLException, ClassNotFoundException {
         ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getLoadstoneSingleton();

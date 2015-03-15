@@ -1,12 +1,13 @@
 package loadstone.api;
 
-import loadstone.model.database.LoadstoneDatabaseModel;
+import loadstone.api.connection.LoadstoneDatabase;
 import loadstone.model.object.TotalData;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import za.co.neilson.sqlite.orm.ObjectModel;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * @author Szymon.Lyszkowski@gmail.com on 08.02.15.
@@ -15,26 +16,9 @@ import java.util.List;
 public class demo {
 
     @Test
-    public void demo() {
-
-        try {
-            //Get a DatabaseModel instance
-            LoadstoneDatabaseModel carDatabaseModel = new LoadstoneDatabaseModel();
-
-            // Use the DatabaseModel to get the ObjectModel for the Car class
-            List<TotalData> cars = carDatabaseModel.getObjectModel(TotalData.class).getAll();
-            //Display the results
-            for (TotalData car : cars) {
-                if (StringUtils.contains(car.getName(), " bank ")) {
-                    System.out.println(car.getName());
-                }
-
-            }
-
-        } catch (ClassNotFoundException | NoSuchFieldException | SQLException e) {
-            e.printStackTrace();
-        }
-
+    public void demo() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+        ObjectModel<TotalData, ResultSet, HashMap<String, Object>> model = LoadstoneDatabase.getLoadstoneSingleton();
+        System.out.println(model.getAll().get(4).toString());
     }
 }
 

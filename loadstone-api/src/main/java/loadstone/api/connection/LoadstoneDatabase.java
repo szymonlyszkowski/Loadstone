@@ -22,6 +22,7 @@ public class LoadstoneDatabase {
     private LoadstoneDatabase() {
     }
 
+    private static LoadstoneDatabaseModel model;
     /**
      * Returns database with default name loadStoneDataBase.db
      *
@@ -33,7 +34,7 @@ public class LoadstoneDatabase {
 
     public static ObjectModel<TotalData, ResultSet, HashMap<String, Object>> getLoadstoneSingleton()
             throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
-        return loadstoneDatabaseModel.getObjectModel(TotalData.class);
+        model=new LoadstoneDatabaseModel();
+        return model.getObjectModel(TotalData.class);
     }
 }
