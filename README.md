@@ -28,6 +28,15 @@ Example:
 	
 	
 ###Getting start:
+First build project using maven:
+	
+	cd Loadstone
+	mvn clean install
+	
+In directory ./loadstone-api/target/ you'll find loadstone-api-1.0-with-dependencies.jar . By importing this jar file to your project you will be able to use in ORM way loadstone database.
+
+**You have to also add to your project sqlite file which has to be named "loadStoneDataBase.db" !**
+
 To access loadstone sqlite database:
 
 	ObjectModel<TotalData, ResultSet, HashMap<String, Object>> model = LoadstoneDatabase.getLoadstoneSingleton();
