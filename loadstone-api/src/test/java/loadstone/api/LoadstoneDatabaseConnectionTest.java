@@ -26,16 +26,9 @@ public class LoadstoneDatabaseConnectionTest {
         LoadstoneDatabaseModel loadStoneDatabaseModel = new LoadstoneDatabaseModel();
         assertNotNull(loadStoneDatabaseModel);
     }
-
-    @Test
-    public void shouldReadDatabaseSingletonDefault() throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getDefaultLoadstoneSingleton();
-        assertNotNull(loadStoneDatabaseModel);
-    }
-
     @Test
     public void shouldReadDatabaseSingletonNameDefined() throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getLoadstoneSingleton(DATABASE_NAME);
+        ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getLoadstoneSingleton();
         assertNotNull(loadStoneDatabaseModel);
     }
 

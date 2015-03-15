@@ -16,24 +16,18 @@ import java.util.HashMap;
 public class LoadstoneDatabaseModel extends
         DatabaseModel<ResultSet, HashMap<String, Object>> {
 
-    private static String loadstoneDatabaseName;
-
     public LoadstoneDatabaseModel() throws SQLException, ClassNotFoundException,
             NoSuchFieldException {
         super((Object[]) null);
     }
 
-    public static void setLoadstoneDatabaseName(String loadstoneDatabaseName) {
-        LoadstoneDatabaseModel.loadstoneDatabaseName = loadstoneDatabaseName;
-    }
-
     /*
-     * (non-Javadoc)
-     *
-     * @see
-     * za.co.neilson.sqlite.orm.DatabaseModel#onInitializeDatabaseDriverInterface
-     * ()
-     */
+ * (non-Javadoc)
+ *
+ * @see
+ * za.co.neilson.sqlite.orm.DatabaseModel#onInitializeDatabaseDriverInterface
+ * ()
+ */
     @Override
     protected DatabaseDriverInterface<ResultSet, HashMap<String, Object>> onInitializeDatabaseDriverInterface(
             Object... args) {
@@ -79,7 +73,7 @@ public class LoadstoneDatabaseModel extends
 
     @Override
     public String getDatabaseName() {
-        return loadstoneDatabaseName;
+        return "loadStoneDataBase.db";
     }
 
     /*

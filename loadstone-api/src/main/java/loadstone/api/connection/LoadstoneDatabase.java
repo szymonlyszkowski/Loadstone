@@ -30,16 +30,9 @@ public class LoadstoneDatabase {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public static ObjectModel<TotalData, ResultSet, HashMap<String, Object>> getLoadstoneSingleton(String databaseName)
-            throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        LoadstoneDatabaseModel.setLoadstoneDatabaseName(databaseName);
-        LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
-        return loadstoneDatabaseModel.getObjectModel(TotalData.class);
-    }
 
-    public static ObjectModel<TotalData, ResultSet, HashMap<String, Object>> getDefaultLoadstoneSingleton()
+    public static ObjectModel<TotalData, ResultSet, HashMap<String, Object>> getLoadstoneSingleton()
             throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        LoadstoneDatabaseModel.setLoadstoneDatabaseName("loadStoneDataBase.db");
         LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
         return loadstoneDatabaseModel.getObjectModel(TotalData.class);
     }
