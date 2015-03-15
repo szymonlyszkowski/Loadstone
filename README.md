@@ -25,5 +25,14 @@ Example:
 	chmod +x analyzeDB.sh
     
 	analyzeDB.sh /directory/to/txt/file/cala_polska_poi.txt
+	
+	
+###Getting start:
+To access loadstone sqlite database:
+
+	ObjectModel<TotalData, ResultSet, HashMap<String, Object>> model = LoadstoneDatabase.getLoadstoneSingleton();
+        System.out.println(model.getAll().get(1).toString());
+        
+This will print out first row in the database.
 
 
