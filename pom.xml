@@ -7,30 +7,54 @@
     <groupId>loadstone</groupId>
     <artifactId>Loadstone</artifactId>
     <packaging>pom</packaging>
-    <version>1.8-SNAPSHOT</version>
+    <version>${loadstoneVersion}</version>
     <modules>
-        <module>loadstone-db-connection</module>
+        <module>loadstone-api</module>
         <module>loadstone-model</module>
+        <module>loadstone-package</module>
     </modules>
 
     <properties>
         <junitVersion>4.11</junitVersion>
         <sqliteVersion>3.7.2</sqliteVersion>
+        <loadstoneVersion>1.0</loadstoneVersion>
     </properties>
     <build>
+        <resources>
+            <resource>
+                <directory>${basedir}</directory>
+                <includes>
+                    <include>loadStoneDataBase.db</include>
+                </includes>
+            </resource>
+        </resources>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.2</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
 
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-        </plugins>
-
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>shade</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <finalName>${artifactId}-${version}-with-dependencies</finalName>
+                        </configuration>
+                    </plugin>
+            </plugins>
     </build>
 
     <dependencies>

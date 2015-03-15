@@ -83,4 +83,17 @@ public class TotalData {
         this.id = id;
     }
 
+    @Override public String toString() {
+        return "TotalData{" +
+                "Accuracy=" + accuracy +
+                ", Name='" + name + '\'' +
+                ", Latitude=" + latitude +
+                ", Longitude=" + longitude +
+                ", Satellites=" + satellites +
+                ", Priority=" + priority +
+                ", Userid=" + userid +
+                ", Id=" + id +
+                '}';
+    }
+
 }
