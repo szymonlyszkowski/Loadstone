@@ -17,8 +17,8 @@ public class demo {
 
     @Test
     public void demo() throws SQLException, NoSuchFieldException, ClassNotFoundException {
-        ObjectModel<TotalData, ResultSet, HashMap<String, Object>> model = LoadstoneDatabase.getLoadstoneSingleton();
-        System.out.println(model.getAll().get(4).toString());
+        ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getObjectModelSingleton();
+        System.out.println(loadStoneDatabaseModel.getAll().get(4).toString());
     }
 }
 

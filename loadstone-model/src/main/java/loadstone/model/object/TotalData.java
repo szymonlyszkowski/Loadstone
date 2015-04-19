@@ -16,18 +16,6 @@ public class TotalData {
     private int priority;
     private int userid;
 
-
-    public TotalData(double accuracy, int id, double latitude, double longitude, String name, int priority, int satellites, int userid) {
-        this.accuracy = accuracy;
-        this.id = id;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.name = name;
-        this.priority = priority;
-        this.satellites = satellites;
-        this.userid = userid;
-    }
-
     @PrimaryKey(autoIncrement = true)
     private int id;
 

@@ -17,16 +17,14 @@ public class APITest {
 
     @Before
     public void prepareTotalData() {
-        totalData1 = new TotalData(0, 0, 0, 0, "usługa", 0, 0, 0);
-        totalData2 = new TotalData(0, 0, 0, 0, "warsztat", 0, 0, 0);
-        totalDataEmpty = new TotalData(0, 0, 0, 0, "empty", 0, 0, 0);
+        totalData1 = new TotalData();
+        totalData1.setName("usługa");
+//        totalData2 = new TotalData(0, 0, 0, 0, "warsztat", 0, 0, 0);
+//        totalDataEmpty = new TotalData(0, 0, 0, 0, "empty", 0, 0, 0);
         api = new API();
     }
 
-    @Test
-    public void shouldReturnRowName() {
-        System.out.println(api.analyzePlace(totalData1));
-    }
+
 
     @Test
     public void shouldReturnCategoryServices() {

@@ -3,6 +3,7 @@ package loadstone.api;
 import loadstone.api.connection.LoadstoneDatabase;
 import loadstone.model.database.LoadstoneDatabaseModel;
 import loadstone.model.object.TotalData;
+import org.junit.Before;
 import org.junit.Test;
 import za.co.neilson.sqlite.orm.ObjectModel;
 
@@ -20,29 +21,39 @@ public class LoadstoneDatabaseConnectionTest {
 
     private static final String DATABASE_NAME = "loadStoneDataBase.db";
     private static final int DATABASE_VERSION = 1;
+    private static final String COLUMN_0_TOKEN = "name";
+    private LoadstoneDatabaseModel loadStoneDatabaseModel;
+    ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneObjectModel;
+
+    @Before
+    public void prepareModel() throws NoSuchFieldException, SQLException, ClassNotFoundException {
+        loadStoneDatabaseModel = new LoadstoneDatabaseModel();
+        loadStoneObjectModel = LoadstoneDatabase.getObjectModelSingleton();
+    }
 
     @Test
     public void shouldReadDatabase() throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        LoadstoneDatabaseModel loadStoneDatabaseModel = new LoadstoneDatabaseModel();
         assertNotNull(loadStoneDatabaseModel);
     }
 
     @Test
     public void shouldReadDatabaseSingletonNameDefined() throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getLoadstoneSingleton();
-        assertNotNull(loadStoneDatabaseModel);
+        assertNotNull(loadStoneObjectModel);
     }
 
     @Test
     public void shouldReadDatabaseName() throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        LoadstoneDatabaseModel loadStoneDatabaseModel = new LoadstoneDatabaseModel();
         assertEquals(DATABASE_NAME, loadStoneDatabaseModel.getDatabaseName());
     }
 
     @Test
     public void shouldReadDatabaseVersion() throws NoSuchFieldException, SQLException, ClassNotFoundException {
-        LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
-        assertEquals(DATABASE_VERSION, loadstoneDatabaseModel.getDatabaseVersion());
+        assertEquals(DATABASE_VERSION, loadStoneDatabaseModel.getDatabaseVersion());
+    }
+
+    @Test
+    public void shouldReturnRowName() throws ClassNotFoundException, NoSuchFieldException, SQLException {
+       assertEquals(COLUMN_0_TOKEN,loadStoneObjectModel.getObjectModelColumns()[0].getName());
     }
 
 }
