@@ -15,7 +15,9 @@ public class TotalData {
     private int satellites;
     private int priority;
     private int userid;
-
+    /**
+     * DO NOT CREATE CONSTRUCTOR IN THIS CLASS !!!
+     */
     @PrimaryKey(autoIncrement = true)
     private int id;
 

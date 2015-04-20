@@ -1,5 +1,6 @@
 package loadstone.api;
 
+import loadstone.api.classification.PreProcessing;
 import loadstone.api.connection.LoadstoneDatabase;
 import loadstone.model.object.TotalData;
 import org.junit.Test;
@@ -20,6 +21,8 @@ public class demo {
         ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getObjectModelSingleton();
         System.out.println(loadStoneDatabaseModel.getAll().get(4).toString());
     }
+
+
 }
 
 
