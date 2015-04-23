@@ -1,0 +1,6 @@
+#Ignore IntelliJ files
+*.iml
+*.idea
+
+#Ignore LoadstoneDataBase.db file - lot of megabytes :P
+*.db
