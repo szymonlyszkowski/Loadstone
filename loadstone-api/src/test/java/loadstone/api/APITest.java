@@ -1,6 +1,6 @@
 package loadstone.api;
 
-import loadstone.model.object.TotalData;
+import loadstone.model.object.LoadstoneTotalData;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,15 +10,15 @@ import static junit.framework.Assert.assertEquals;
  * @author Szymon.Lyszkowski@tomtom.com on 15.03.15.
  */
 public class APITest {
-    private TotalData totalData1;
-    private TotalData totalData2;
-    private TotalData totalDataEmpty;
+    private LoadstoneTotalData loadstoneTotalData1;
+    private LoadstoneTotalData loadstoneTotalData2;
+    private LoadstoneTotalData loadstoneTotalDataEmpty;
     private API api;
 
     @Before
     public void prepareTotalData() {
-        totalData1 = new TotalData();
-        totalData1.setName("usługa");
+        loadstoneTotalData1 = new LoadstoneTotalData();
+        loadstoneTotalData1.setName("usługa");
 //        totalData2 = new TotalData(0, 0, 0, 0, "warsztat", 0, 0, 0);
 //        totalDataEmpty = new TotalData(0, 0, 0, 0, "empty", 0, 0, 0);
         api = new API();
@@ -28,16 +28,16 @@ public class APITest {
 
     @Test
     public void shouldReturnCategoryServices() {
-        assertEquals(Categories.SERVICES, api.analyzePlace(totalData1));
+        assertEquals(Categories.SERVICES, api.analyzePlace(loadstoneTotalData1));
     }
 
     @Test
     public void shouldReturnCategoryAutomotive() {
-        assertEquals(Categories.AUTOMOTIVE,api.analyzePlace(totalData2));
+        assertEquals(Categories.AUTOMOTIVE,api.analyzePlace(loadstoneTotalData2));
     }
 
     @Test
     public void shouldNotReturnCategory() {
-        assertEquals(Categories.NOT_CLASSIFIED, api.analyzePlace(totalDataEmpty));
+        assertEquals(Categories.NOT_CLASSIFIED, api.analyzePlace(loadstoneTotalDataEmpty));
     }
 }

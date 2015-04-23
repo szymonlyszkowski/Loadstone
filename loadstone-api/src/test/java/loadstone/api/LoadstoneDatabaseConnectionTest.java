@@ -2,7 +2,7 @@ package loadstone.api;
 
 import loadstone.api.connection.LoadstoneDatabase;
 import loadstone.model.database.LoadstoneDatabaseModel;
-import loadstone.model.object.TotalData;
+import loadstone.model.object.LoadstoneTotalData;
 import org.junit.Before;
 import org.junit.Test;
 import za.co.neilson.sqlite.orm.ObjectModel;
@@ -23,7 +23,7 @@ public class LoadstoneDatabaseConnectionTest {
     private static final int DATABASE_VERSION = 1;
     private static final String COLUMN_0_TOKEN = "name";
     private LoadstoneDatabaseModel loadStoneDatabaseModel;
-    ObjectModel<TotalData, ResultSet, HashMap<String, Object>> loadStoneObjectModel;
+    ObjectModel<LoadstoneTotalData, ResultSet, HashMap<String, Object>> loadStoneObjectModel;
 
     @Before
     public void prepareModel() throws NoSuchFieldException, SQLException, ClassNotFoundException {

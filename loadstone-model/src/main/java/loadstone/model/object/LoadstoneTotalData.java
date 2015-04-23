@@ -1,12 +1,15 @@
 package loadstone.model.object;
 
+import loadstone.model.DataModel;
 import za.co.neilson.sqlite.orm.annotations.PrimaryKey;
+
+import javax.xml.crypto.Data;
 
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 23.02.15.
  */
 
-public class TotalData {
+public class LoadstoneTotalData implements DataModel{
 
     private String name;
     private double latitude;
@@ -15,16 +18,17 @@ public class TotalData {
     private int satellites;
     private int priority;
     private int userid;
+
     /**
      * DO NOT CREATE CONSTRUCTOR IN THIS CLASS !!!
      */
     @PrimaryKey(autoIncrement = true)
     private int id;
-
+    @Override
     public String getName() {
         return name;
     }
-
+    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -98,4 +102,16 @@ public class TotalData {
                 '}';
     }
 
+    public void setProperties(LoadstoneTotalData initialLoadstoneTotalData) {
+        this.accuracy = initialLoadstoneTotalData.getAccuracy();
+        this.id = initialLoadstoneTotalData.getId();
+        this.latitude = initialLoadstoneTotalData.getLatitude();
+        this.longitude = initialLoadstoneTotalData.getLongitude();
+        this.name = initialLoadstoneTotalData.getName();
+        this.priority = initialLoadstoneTotalData.getPriority();
+        this.satellites = initialLoadstoneTotalData.getSatellites();
+        this.userid = initialLoadstoneTotalData.getUserid();
+    }
+
 }
+
