@@ -1,5 +1,5 @@
 #!/bin/sh
-sqlite3 loadStoneDataBase.db <<EOS
+sqlite3 $2.db <<EOS
 .headers on
 CREATE TABLE TotalData (
     "name" TEXT,

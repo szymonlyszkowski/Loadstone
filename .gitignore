@@ -4,3 +4,6 @@
 
 #Ignore LoadstoneDataBase.db file - lot of megabytes :P
 *.db
+
+#Ignore java files compiled to bytecode (target folder)
+*.class

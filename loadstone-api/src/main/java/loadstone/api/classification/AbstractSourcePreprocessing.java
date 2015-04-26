@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface AbstractSourcePreprocessing {
 
-    public DataModel preprocessDataModel(DataModel data, List<String> patternsToReject);
+    public DataModel preprocessDataModel(DataModel data);
 
     public List preprocessCollection(List<DataModel> collectionToBePreprocessed);
 
