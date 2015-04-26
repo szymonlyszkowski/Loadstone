@@ -14,7 +14,7 @@ import static junit.framework.TestCase.assertEquals;
  */
 public class LoadstoneAPIUtilsTest {
 
-    private static final String UL_OR_ADRES="name LIKE %ul.% OR name LIKE %adres%";
+    private static final String UL_OR_ADRES="name LIKE '%ul.%' OR name LIKE '%adres%'";
     private ArrayList<String> patterns;
 
     @Before()

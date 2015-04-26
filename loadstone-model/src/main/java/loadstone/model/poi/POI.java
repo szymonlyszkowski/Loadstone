@@ -1,6 +1,6 @@
 package loadstone.model.poi;
 
-import loadstone.model.object.LoadstoneTotalData;
+import loadstone.model.object.LoadstoneTotalDataObjectModel;
 
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 01.03.15.
@@ -12,11 +12,11 @@ public class POI {
     private double latitude;
     private double longitude;
 
-    POI(LoadstoneTotalData loadstoneTotalData, String category) {
+    POI(LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModel, String category) {
         this.category = category;
-        this.name = loadstoneTotalData.getName();
-        this.latitude = loadstoneTotalData.getLatitude();
-        this.longitude = loadstoneTotalData.getLongitude();
+        this.name = loadstoneTotalDataObjectModel.getName();
+        this.latitude = loadstoneTotalDataObjectModel.getLatitude();
+        this.longitude = loadstoneTotalDataObjectModel.getLongitude();
     }
 
     public String getCategory() {

@@ -4,7 +4,7 @@ package loadstone.api.classification;/**
  */
 
 import loadstone.model.DataModel;
-import loadstone.model.object.LoadstoneTotalData;
+import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import org.apache.commons.lang3.StringUtils;
 
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ public class LoadstonePreprocessing implements AbstractResourcePreprocessing {
     @Override
     public DataModel preprocessDataModel(DataModel row) {
         String afterTrimming = preprocessName(row.getName(), patterns);
-        DataModel preprocessedRow = new LoadstoneTotalData();
+        DataModel preprocessedRow = new LoadstoneTotalDataObjectModel();
         preprocessedRow.setName(afterTrimming);
         return preprocessedRow;
     }

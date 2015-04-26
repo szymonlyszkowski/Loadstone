@@ -1,7 +1,7 @@
 #!/bin/sh
 sqlite3 $2.db <<EOS
 .headers on
-CREATE TABLE TotalData (
+CREATE TABLE LoadstoneTotalDataObjectModel (
     "name" TEXT,
     "latitude" REAL,
     "longitude" REAL,

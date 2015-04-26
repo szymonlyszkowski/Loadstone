@@ -3,13 +3,11 @@ package loadstone.model.object;
 import loadstone.model.DataModel;
 import za.co.neilson.sqlite.orm.annotations.PrimaryKey;
 
-import javax.xml.crypto.Data;
-
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 23.02.15.
  */
 
-public class LoadstoneTotalData implements DataModel{
+public class LoadstoneTotalDataObjectModel implements DataModel{
 
     private String name;
     private double latitude;
@@ -102,16 +100,7 @@ public class LoadstoneTotalData implements DataModel{
                 '}';
     }
 
-    public void setProperties(LoadstoneTotalData initialLoadstoneTotalData) {
-        this.accuracy = initialLoadstoneTotalData.getAccuracy();
-        this.id = initialLoadstoneTotalData.getId();
-        this.latitude = initialLoadstoneTotalData.getLatitude();
-        this.longitude = initialLoadstoneTotalData.getLongitude();
-        this.name = initialLoadstoneTotalData.getName();
-        this.priority = initialLoadstoneTotalData.getPriority();
-        this.satellites = initialLoadstoneTotalData.getSatellites();
-        this.userid = initialLoadstoneTotalData.getUserid();
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -120,7 +109,7 @@ public class LoadstoneTotalData implements DataModel{
         if (o == null || getClass() != o.getClass())
             return false;
 
-        LoadstoneTotalData that = (LoadstoneTotalData) o;
+        LoadstoneTotalDataObjectModel that = (LoadstoneTotalDataObjectModel) o;
 
         if (Double.compare(that.accuracy, accuracy) != 0)
             return false;

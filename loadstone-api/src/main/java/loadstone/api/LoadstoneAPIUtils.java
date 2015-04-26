@@ -1,8 +1,4 @@
-package loadstone.api;/**
- * Copyright (c) 2014 TomTom International B.V. All rights reserved.
- * TomTom PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
-
+package loadstone.api;
 import java.util.List;
 
 /**
@@ -15,9 +11,9 @@ public class LoadstoneAPIUtils {
         StringBuilder builder = new StringBuilder();
         for (String pattern : patterns) {
             if (patterns.indexOf(pattern) == patterns.size() - 1)
-                builder.append(COLUMN_TO_PREPROCESS_NAME).append(" LIKE ").append('%').append(pattern).append('%');
+                builder.append(COLUMN_TO_PREPROCESS_NAME).append(" LIKE ").append("\'%").append(pattern).append("%\'");
             else
-                builder.append(COLUMN_TO_PREPROCESS_NAME).append(" LIKE ").append('%').append(pattern).append('%').append(" OR ");
+                builder.append(COLUMN_TO_PREPROCESS_NAME).append(" LIKE ").append("\'%").append(pattern).append("%\'").append(" OR ");
         }
         return builder.toString();
     }

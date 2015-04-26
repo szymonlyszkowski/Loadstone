@@ -1,6 +1,6 @@
 package loadstone.api;
 
-import loadstone.model.object.LoadstoneTotalData;
+import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,17 +10,19 @@ import static junit.framework.Assert.assertEquals;
  * @author Szymon.Lyszkowski@tomtom.com on 15.03.15.
  */
 public class APITest {
-    private LoadstoneTotalData loadstoneTotalData1;
-    private LoadstoneTotalData loadstoneTotalData2;
-    private LoadstoneTotalData loadstoneTotalDataEmpty;
+    private LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModel1;
+    private LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModel2;
+    private LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModelEmpty;
     private API api;
 
     @Before
     public void prepareTotalData() {
-        loadstoneTotalData1 = new LoadstoneTotalData();
-        loadstoneTotalData1.setName("usługa");
-//        totalData2 = new TotalData(0, 0, 0, 0, "warsztat", 0, 0, 0);
-//        totalDataEmpty = new TotalData(0, 0, 0, 0, "empty", 0, 0, 0);
+        loadstoneTotalDataObjectModel1 = new LoadstoneTotalDataObjectModel();
+        loadstoneTotalDataObjectModel2 = new LoadstoneTotalDataObjectModel();
+        loadstoneTotalDataObjectModelEmpty = new LoadstoneTotalDataObjectModel();
+        loadstoneTotalDataObjectModel1.setName("usługa");
+        loadstoneTotalDataObjectModel2.setName("warsztat");
+        loadstoneTotalDataObjectModelEmpty.setName("empty");
         api = new API();
     }
 
@@ -28,16 +30,16 @@ public class APITest {
 
     @Test
     public void shouldReturnCategoryServices() {
-        assertEquals(Categories.SERVICES, api.analyzePlace(loadstoneTotalData1));
+        assertEquals(Categories.SERVICES, api.analyzePlace(loadstoneTotalDataObjectModel1));
     }
 
     @Test
     public void shouldReturnCategoryAutomotive() {
-        assertEquals(Categories.AUTOMOTIVE,api.analyzePlace(loadstoneTotalData2));
+        assertEquals(Categories.AUTOMOTIVE,api.analyzePlace(loadstoneTotalDataObjectModel2));
     }
 
     @Test
     public void shouldNotReturnCategory() {
-        assertEquals(Categories.NOT_CLASSIFIED, api.analyzePlace(loadstoneTotalDataEmpty));
+        assertEquals(Categories.NOT_CLASSIFIED, api.analyzePlace(loadstoneTotalDataObjectModelEmpty));
     }
 }

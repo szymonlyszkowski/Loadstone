@@ -1,7 +1,7 @@
 package loadstone.api.connection;
 
 import loadstone.model.database.LoadstoneDatabaseModel;
-import loadstone.model.object.LoadstoneTotalData;
+import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import za.co.neilson.sqlite.orm.ObjectModel;
 
 import java.sql.ResultSet;
@@ -32,9 +32,9 @@ public class LoadstoneDatabase {
      * @throws ClassNotFoundException
      */
 
-    public static ObjectModel<LoadstoneTotalData, ResultSet, HashMap<String, Object>> getObjectModelSingleton()
+    public static ObjectModel<LoadstoneTotalDataObjectModel, ResultSet, HashMap<String, Object>> getObjectModelSingleton()
             throws NoSuchFieldException, SQLException, ClassNotFoundException {
         model=new LoadstoneDatabaseModel();
-        return model.getObjectModel(LoadstoneTotalData.class);
+        return model.getObjectModel(LoadstoneTotalDataObjectModel.class);
     }
 }

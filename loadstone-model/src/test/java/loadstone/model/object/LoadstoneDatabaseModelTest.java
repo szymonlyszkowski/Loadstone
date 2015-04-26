@@ -18,13 +18,13 @@ public class LoadstoneDatabaseModelTest {
     @Test
     public void shouldReturnTotalDataClass() throws NoSuchFieldException, SQLException, ClassNotFoundException {
         LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
-        assertEquals(LoadstoneTotalData.class, loadstoneDatabaseModel.getObjectModel(LoadstoneTotalData.class).getObjetType());
+        assertEquals(LoadstoneTotalDataObjectModel.class, loadstoneDatabaseModel.getObjectModel(LoadstoneTotalDataObjectModel.class).getObjetType());
     }
 
     @Test
     public void shouldCheckTotalDataTableColumns() throws NoSuchFieldException, SQLException, ClassNotFoundException {
         LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
-        ObjectModelColumn[] totalDataColumns = loadstoneDatabaseModel.getObjectModel(LoadstoneTotalData.class).getObjectModelColumns();
+        ObjectModelColumn[] totalDataColumns = loadstoneDatabaseModel.getObjectModel(LoadstoneTotalDataObjectModel.class).getObjectModelColumns();
         assertEquals(TOTAL_DATA_COLUMNS.length, totalDataColumns.length);
         for (int i = 0; i < TOTAL_DATA_COLUMNS.length; ++i) {
             assertEquals(TOTAL_DATA_COLUMNS[i].toString(), totalDataColumns[i].getName());

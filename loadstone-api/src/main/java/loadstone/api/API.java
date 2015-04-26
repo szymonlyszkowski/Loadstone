@@ -1,6 +1,6 @@
 package loadstone.api;
 
-import loadstone.model.object.LoadstoneTotalData;
+import loadstone.model.object.LoadstoneTotalDataObjectModel;
 
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 15.03.15.
@@ -9,7 +9,7 @@ public class API {
 
     private CategoriesTree categoriesTree = new CategoriesTree();
 
-    public Categories analyzePlace(LoadstoneTotalData place) {
+    public Categories analyzePlace(LoadstoneTotalDataObjectModel place) {
         String placeName = place.getName();
         return analyzeName(placeName);
     }

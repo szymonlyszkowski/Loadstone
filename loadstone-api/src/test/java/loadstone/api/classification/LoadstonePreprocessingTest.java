@@ -3,25 +3,16 @@ package loadstone.api.classification;/**
  * TomTom PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-import junit.framework.Assert;
-import loadstone.api.LoadstoneAPIUtils;
-import loadstone.api.connection.LoadstoneDatabase;
 import loadstone.model.DataModel;
-import loadstone.model.database.LoadstoneDatabaseModel;
-import loadstone.model.object.LoadstoneTotalData;
+import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import org.junit.Before;
 import org.junit.Test;
-import za.co.neilson.sqlite.orm.ObjectModel;
 
-import javax.xml.crypto.Data;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertSame;
 
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 20.04.15.
@@ -42,18 +33,7 @@ public class LoadstonePreprocessingTest {
     public void preprocessWholeDataBaseLoadstoneFromUl() throws SQLException, NoSuchFieldException, ClassNotFoundException {
 
         LoadstonePreprocessing preprocessing = new LoadstonePreprocessing(patterns);
-        ObjectModel<LoadstoneTotalData, ResultSet, HashMap<String, Object>> objectModelSingleton = LoadstoneDatabase.getObjectModelSingleton();
-        List<LoadstoneTotalData> allFromDB = objectModelSingleton.getAll(LoadstoneAPIUtils.prepareSqlQuery(patterns));
-        List<DataModel> workingCollection = new ArrayList<>();
-        workingCollection.addAll(allFromDB);
-        objectModelSingleton.insertOrUpdateAll(preprocessing.preprocessCollection(workingCollection));
-
-    }
-
-    @Test
-    public void preprocessLoadstoneDataModel() throws SQLException, NoSuchFieldException, ClassNotFoundException {
-        LoadstonePreprocessing preprocessing = new LoadstonePreprocessing(patterns);
-        DataModel dataModel = new LoadstoneTotalData();
+        DataModel dataModel = new LoadstoneTotalDataObjectModel();
         dataModel.setName("adres ul ul. fake name to be trimmed ");
         DataModel preprocessedLoadstoneDataModel = preprocessing.preprocessDataModel(dataModel);
         assertEquals("fake name to be trimmed", preprocessedLoadstoneDataModel.getName());
@@ -62,17 +42,16 @@ public class LoadstonePreprocessingTest {
     @Test
     public void preprocessLoadstoneDataModelCollection() throws SQLException, NoSuchFieldException, ClassNotFoundException {
         LoadstonePreprocessing preprocessing = new LoadstonePreprocessing(patterns);
-        DataModel dataModelOld = new LoadstoneTotalData();
+        DataModel dataModelOld = new LoadstoneTotalDataObjectModel();
         dataModelOld.setName("adres ul. czechy 246");
-        DataModel dataModelOld_1 = new LoadstoneTotalData();
+        DataModel dataModelOld_1 = new LoadstoneTotalDataObjectModel();
         dataModelOld_1.setName("adres ul. kramarska 15 warszawa rembertów");
         ArrayList<DataModel> dataModelsOld = new ArrayList<>();
         dataModelsOld.add(dataModelOld);
         dataModelsOld.add(dataModelOld_1);
-        ArrayList<DataModel> dataModelsNew = new ArrayList<>();
-        DataModel dataModelNew = new LoadstoneTotalData();
+        DataModel dataModelNew = new LoadstoneTotalDataObjectModel();
         dataModelNew.setName("czechy 246");
-        DataModel dataModelNew_1 = new LoadstoneTotalData();
+        DataModel dataModelNew_1 = new LoadstoneTotalDataObjectModel();
         dataModelNew_1.setName("kramarska 15 warszawa rembertów");
 
         List preprocessedCollection = preprocessing.preprocessCollection(dataModelsOld);
@@ -80,4 +59,5 @@ public class LoadstonePreprocessingTest {
         assertEquals(dataModelNew, preprocessedCollection.get(0));
         assertEquals(dataModelNew_1, preprocessedCollection.get(1));
     }
+
 }

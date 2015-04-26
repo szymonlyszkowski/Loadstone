@@ -1,6 +1,6 @@
 package loadstone.model.database;
 
-import loadstone.model.object.LoadstoneTotalData;
+import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import za.co.neilson.sqlite.orm.DatabaseDriverInterface;
 import za.co.neilson.sqlite.orm.DatabaseInfo;
 import za.co.neilson.sqlite.orm.DatabaseModel;
@@ -61,7 +61,7 @@ public class LoadstoneDatabaseModel extends
          * Tables Managed By This Model
 		 */
         // Register the ObjectModel for the Car class with the DatabaseModel
-        objectModels.put(LoadstoneTotalData.class, new JdbcObjectModel<LoadstoneTotalData>(this) {
+        objectModels.put(LoadstoneTotalDataObjectModel.class, new JdbcObjectModel<LoadstoneTotalDataObjectModel>(this) {
         });
     }
 
