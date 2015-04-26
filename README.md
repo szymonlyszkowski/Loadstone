@@ -9,13 +9,13 @@ In linux you can just type:
 
 ###Processing scripts:
 
-/SQLiteBuildScripts/**createDB.sh** - script utility for processing .txt file from website <http://gps.zlotowicz.pl/> . Creates SQLite database.
+/SQLiteBuildScripts/**createDB.sh** - script utility for processing .txt file from website <http://gps.zlotowicz.pl/> . Creates SQLite database. For loadstone *.txt files database should be "loadStoneDataBase", .db extention is added automatically.
 
 Example:
 
 	chmod +x createDB.sh
     
-	createDB.sh /directory/to/txt/file/cala_polska.txt
+	createDB.sh /directory/to/txt/file/cala_polska.txt dataBaseNameWithoutExtention
 
 
 /SQLiteBuildScripts/**analyzeDB.sh** - script utility for analyzing .txt file which computes what phrases were the most frequent occuring in file. Returns phrases with number of occurences.
