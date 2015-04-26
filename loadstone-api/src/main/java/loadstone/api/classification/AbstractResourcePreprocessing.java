@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 23.04.15.
  */
-public interface AbstractSourcePreprocessing {
+public interface AbstractResourcePreprocessing {
 
     public DataModel preprocessDataModel(DataModel data);
 

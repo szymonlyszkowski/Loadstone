@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 20.04.15.
  */
-public class LoadstonePreprocessing implements AbstractSourcePreprocessing {
+public class LoadstonePreprocessing implements AbstractResourcePreprocessing {
     private static final String EMPTY_STRING="";
     private List<String> patterns;
 
