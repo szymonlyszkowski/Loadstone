@@ -113,5 +113,34 @@ public class LoadstoneTotalData implements DataModel{
         this.userid = initialLoadstoneTotalData.getUserid();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        LoadstoneTotalData that = (LoadstoneTotalData) o;
+
+        if (Double.compare(that.accuracy, accuracy) != 0)
+            return false;
+        if (id != that.id)
+            return false;
+        if (Double.compare(that.latitude, latitude) != 0)
+            return false;
+        if (Double.compare(that.longitude, longitude) != 0)
+            return false;
+        if (priority != that.priority)
+            return false;
+        if (satellites != that.satellites)
+            return false;
+        if (userid != that.userid)
+            return false;
+        if (!name.equals(that.name))
+            return false;
+
+        return true;
+    }
+
 }
 

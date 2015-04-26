@@ -6,7 +6,8 @@ package loadstone.model;/**
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 23.04.15.
  */
-public interface DataModel {
+public interface DataModel{
     public String getName();
     public void setName(String name);
+
 }
