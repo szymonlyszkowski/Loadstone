@@ -38,7 +38,7 @@ public class RealLoadStoneDataBaseTest {
         assertEquals(loadstoneTotalDataObjectModel, loadStoneDatabaseModel.getAll().get(4));
     }
 
-    @Ignore
+    @Ignore("Turn on only when want to update whole data base using preprocessing with given patterns")
     @Test
     public void preprocessWholeDataBaseLoadstoneFromUl() throws SQLException, NoSuchFieldException, ClassNotFoundException {
         ArrayList patterns = new ArrayList();

@@ -14,7 +14,7 @@
     <build>
         <resources>
             <resource>
-                <directory>${project.basedir}</directory>
+                <directory>${project.parent.artifactId}</directory>
                 <includes>
                     <include>loadStoneDataBase.db</include>
                 </includes>

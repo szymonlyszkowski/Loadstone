@@ -11,6 +11,8 @@
 
     <artifactId>loadstone-api</artifactId>
     <packaging>jar</packaging>
+
+
     <dependencies>
         <dependency>
             <groupId>org.xerial</groupId>
@@ -28,7 +30,6 @@
             <version>${junitVersion}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>loadstone</groupId>
             <artifactId>loadstone-model</artifactId>
