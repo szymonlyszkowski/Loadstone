@@ -1,0 +1,42 @@
+\documentclass[12pt,a4paper,onecolumn,titlepage]{report}
+%when apply twoside next page moves to left
+\usepackage[polish,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{ot1patch}
+\usepackage[T1]{fontenc}
+\usepackage{todonotes}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{setspace}
+\usepackage{amsfonts}
+\usepackage[multiple]{footmisc}
+
+\lstdefinestyle{BASH}{language=bash,frame=tb,numbers=left,numberstyle=\tiny,columns=fullflexible,
+	backgroundcolor=\color{yellow!20},basicstyle=\small\sffamily, breaklines=true}
+
+%links are not coloured
+\hypersetup{hidelinks}
+\onehalfspacing
+
+\title {Bacherol Thesis
+\\Points of Interests categorization system}
+\author{Szymon Łyszkowski}
+
+\begin{document}
+\maketitle
+
+\textbf{
+		\\Faculty of Technical Physics, Information Technology and Applied \\Mathematics
+		\\Thesis supervisor: Piotr Skulimowski, PhD
+		\\Graduate student: Szymon Łyszkowski
+		\\Index number: 171132
+		\\Programme: Information Technology
+	}
+
+
+\tableofcontents
+
+\include{chapter-introduction}
+\include{chapter-loadstone_database}
+
+\end{document}

@@ -7,3 +7,10 @@
 
 #Ignore java files compiled to bytecode (target folder)
 *.class
+
+#Ignore LateX stuff
+*.aux
+*.dvi
+*.log
+*.toc
+*.synctex.*
