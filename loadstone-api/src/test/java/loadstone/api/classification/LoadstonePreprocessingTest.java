@@ -1,7 +1,4 @@
-package loadstone.api.classification;/**
- * Copyright (c) 2014 TomTom International B.V. All rights reserved.
- * TomTom PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
+package loadstone.api.classification;
 
 import loadstone.model.DataModel;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;

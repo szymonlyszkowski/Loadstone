@@ -1,0 +1,25 @@
+\chapter{Categorization Methods}
+\section{Overview}
+Plain text is the most friendly and convenient in use for human beings as a data medium. Unfortunately amount of text which can be effectively analyzed by human is quite limited. On the other hand, text as source of information for computer machines does not possess any heuristics. That is the reason to develop methods which can be applied to for particular data sources selected by human. As text content is usually complex methods are designed in such way that cover narrow categories of data sources. In general methods taken under consideration in this thesis were covering following approaches:
+\begin{itemize}
+	\item Preprocessing - text analysis paying special attention to reject unnecessary phrases which would slow down categorizarion process.
+	\item Feature Extraction - text analysis which can consider wide range of text. Useful especially to analyze human text input (internet forum comment and entries). Uses TF-IDF\footnote{Term Frequency-Inverse Document Frequency} method.
+	\item Naive Bayesian Classifier - method enabling direct text classification to appropriate category/phrase. It requires initial knowledge (heuristics) about given input.
+	\item SVM\footnote{Support Vector Machine} - a form of binary classification. It divides input to two different separable domains. In order to classify for particular domain one-to-one comparison is applied.
+	\item VSM \footnote{Vector Space Model} - method of text indexing and weight measuring. Already weighted indices are easier to give a hint for human which document to query. In the last stage measures text content simillarity according to given query.
+	       
+\end{itemize}
+
+\section{Preprocessing}
+The most important function of preprocessing is obviously downsizing of input data. Redunant or non-heuristic data can influence factors like:
+\begin{itemize}
+	\item Performance - the less text to analyze the result can be obtained faster
+	\item Complexity - unnecessary phrases can influence in futher steps on classification correctness (dim heuristics)
+	zawartość...
+\end{itemize}
+
+The most often rejected phrases are those which appear the most frequently in particular language. Concering english language phrases like: \textit{the, a, e.g, i.e} does not introduce any hint for further classification. This is the reason why processing of such statments can be abandoned in further steps. Each document should be human analyzed properly before applying patterns to reject. Patterns will differ significantly if given input will be database entry, HTML page or plain forum comment. 
+
+
+
+ 

@@ -5,6 +5,7 @@ import org.junit.Test;
 import za.co.neilson.sqlite.orm.ObjectModelColumn;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -29,6 +30,13 @@ public class LoadstoneDatabaseModelTest {
         for (int i = 0; i < TOTAL_DATA_COLUMNS.length; ++i) {
             assertEquals(TOTAL_DATA_COLUMNS[i].toString(), totalDataColumns[i].getName());
         }
+    }
+
+    @Test
+    public void bla() throws NoSuchFieldException, SQLException, ClassNotFoundException {
+        LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
+        List<LoadstoneTotalDataObjectModel> all = loadstoneDatabaseModel.getObjectModel(LoadstoneTotalDataObjectModel.class).getAll();
+        System.out.println(all.get(6));
     }
 
 }

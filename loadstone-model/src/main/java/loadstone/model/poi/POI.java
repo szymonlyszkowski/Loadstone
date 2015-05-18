@@ -1,11 +1,12 @@
 package loadstone.model.poi;
 
+import loadstone.model.DataModel;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;
 
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 01.03.15.
  */
-public class POI {
+public class POI implements DataModel{
 
     private String category;
     private String name;

@@ -1,5 +1,13 @@
 \documentclass[12pt,a4paper,onecolumn,titlepage]{report}
 %when apply twoside next page moves to left
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=35mm,
+	right=25mm,
+	top=25mm,
+	bottom=25mm,
+}
 \usepackage[polish,english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{ot1patch}
@@ -8,12 +16,13 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{setspace}
-\usepackage{amsfonts}
+\usepackage{times}
 \usepackage[multiple]{footmisc}
 
 \lstdefinestyle{BASH}{language=bash,frame=tb,numbers=left,numberstyle=\tiny,columns=fullflexible,
 	backgroundcolor=\color{yellow!20},basicstyle=\small\sffamily, breaklines=true}
 
+\lstdefinestyle{JAVA}{language=Java,numbers=left,numberstyle=\tiny,backgroundcolor=\color{yellow!20},basicstyle=\small\sffamily,breaklines=true,frame=tb}
 %links are not coloured
 \hypersetup{hidelinks}
 \onehalfspacing
@@ -37,6 +46,8 @@
 \tableofcontents
 
 \include{chapter-introduction}
+\include{chapter-categorization_methods}
 \include{chapter-loadstone_database}
+\include{chapter-categorization_api}
 
 \end{document}
