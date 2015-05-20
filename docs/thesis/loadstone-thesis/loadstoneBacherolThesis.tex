@@ -18,6 +18,8 @@
 \usepackage{setspace}
 \usepackage{times}
 \usepackage[multiple]{footmisc}
+\usepackage{mathtools}
+\usepackage{array,tabularx}
 
 \lstdefinestyle{BASH}{language=bash,frame=tb,numbers=left,numberstyle=\tiny,columns=fullflexible,
 	backgroundcolor=\color{yellow!20},basicstyle=\small\sffamily, breaklines=true}
@@ -26,6 +28,11 @@
 %links are not coloured
 \hypersetup{hidelinks}
 \onehalfspacing
+
+\newenvironment{conditions*}
+{\par\vspace{\abovedisplayskip}\noindent
+	\tabularx{\columnwidth}{>{$}l<{$} @{\ : } >{\raggedright\arraybackslash}X}}
+{\endtabularx\par\vspace{\belowdisplayskip}}
 
 \title {Bacherol Thesis
 \\Points of Interests categorization system}

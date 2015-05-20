@@ -3,7 +3,7 @@
 Plain text is the most friendly and convenient in use for human beings as a data medium. Unfortunately amount of text which can be effectively analyzed by human is quite limited. On the other hand, text as source of information for computer machines does not possess any heuristics. That is the reason to develop methods which can be applied to for particular data sources selected by human. As text content is usually complex methods are designed in such way that cover narrow categories of data sources. In general methods taken under consideration in this thesis were covering following approaches:
 \begin{itemize}
 	\item Preprocessing - text analysis paying special attention to reject unnecessary phrases which would slow down categorizarion process.
-	\item Feature Extraction - text analysis which can consider wide range of text. Useful especially to analyze human text input (internet forum comment and entries). Uses TF-IDF\footnote{Term Frequency-Inverse Document Frequency} method.
+	\item Feature Extraction - text analysis which can consider wide range of text. Useful especially to analyze human text input (internet forum comment and entries). Uses TF-IDF\footnote{Term Frequency-Inverse Document Frequency} method. The result is heuristic for further text analysis.
 	\item Naive Bayesian Classifier - method enabling direct text classification to appropriate category/phrase. It requires initial knowledge (heuristics) about given input.
 	\item SVM\footnote{Support Vector Machine} - a form of binary classification. It divides input to two different separable domains. In order to classify for particular domain one-to-one comparison is applied.
 	\item VSM \footnote{Vector Space Model} - method of text indexing and weight measuring. Already weighted indices are easier to give a hint for human which document to query. In the last stage measures text content simillarity according to given query.
@@ -18,8 +18,43 @@ The most important function of preprocessing is obviously downsizing of input da
 	zawartość...
 \end{itemize}
 
-The most often rejected phrases are those which appear the most frequently in particular language. Concering english language phrases like: \textit{the, a, e.g, i.e} does not introduce any hint for further classification. This is the reason why processing of such statments can be abandoned in further steps. Each document should be human analyzed properly before applying patterns to reject. Patterns will differ significantly if given input will be database entry, HTML page or plain forum comment. 
+The most often rejected phrases are those which appear the most frequently in particular language. Concering english language phrases like: \textit{the, a, e.g, i.e} does not introduce any hint for further classification. This is the reason why processing of such statments can be abandoned in further steps. Each document should be human analyzed properly before applying patterns to reject. Patterns will differ significantly if given input will be database entry, HTML page or plain forum comment.
+
+\section{Feature Extraction}
+
+Feature Extraction method as its name states allow user to extract particular parts to avoid further repetitions and introduce more uniform steps enabling human easier interpretation. Features are basically values which are computed for corresponding phrases. Phrases are dividing to two categories:
+\begin{itemize}
+	\item single word
+	\item multi-word
+\end{itemize}
+To compute frequency of single words TF-IDF can be used. This method will be described later in this thesis. In case of \textbf{single word} task is not complicated because of its "non-complex nature". It is easy to detach words from each other for computer machine.
+\\ \newline\textbf{Multi-word} is much more complicated construction which can consists of two or more consecutive words. Although it is difficult to clearly define how multi-world looks like, it can change meaning when atomic parts (words) are changed in order or can be translated directly. What is more human avoid repetitions of the same word when create text but when using multi-words the latter are not introduced by their counterparts to provide disambiguity. Such approach allows for better context clarity. This is the reason to deeply analyze multi-words. Multi-words can be retrieved using many different methods like: \textit{semi-supervised document classification, inspection, frequency approach, sentence comparison, mutual information}.
+
+\subsection{TF-IDF}
+\textbf{Term Frequency - Inverse Document Frequency} is basically about computing frequency of word occurences. When considering input data (document) it is presented as a vector of weights. Vector consists of phrases weights occuring in document. Result of TF-IDF is an information about phrase frequency occurance but in balanced way - it includes word frequency in whole collection of documents. Such approach disables local increases of importance in total (if given phrase doesn't occur relatively uniformly its weight does not increase).\\ \textbf{Term Frequency} is denoted by following formula:
+\begin{equation} 
+TF(term_i,doc_j)=\frac{term_{i,j}}{\sum_{0}^{k}term_{k,j}}
+\end{equation}
+where:\\
+$term_{i,j}$ is amount of phrase (term) occurrences in given document $doc_j$\\ 
+$denominator$ is sum of all phrases occurrences in document $doc_j$
+\\\newline\textbf{Inverse Document Frequency} is denoted by following formula:
+\begin{equation}
+IDF(term_i, D) =\log{\frac{D}{1+{|d\in D : term_i \in D|}}}
+\end{equation}
+where:\\
+$D$ is amount of documents in collection\\ 
+$denominator$ is sum of all documents where $term_i$ occured
+\newline\textbf{TF-IDF} is a product of both factors:
+\begin{equation}
+TFIDF(term_i, doc_j, D) = TF(term_i,doc_j)\times IDF(term_i,D)
+\end{equation}
+where:\\
+$term_{i,j}$ is amount of phrase (term) occurrences in given document $doc_j$\\
+$D$ is collection of documents
+
+\subsection{Semi-supervised document classification}
+\todo{Przykładowa pół nadzorowana ekstrakcja multi-word}
 
 
 
- 
