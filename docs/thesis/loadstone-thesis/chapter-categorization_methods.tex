@@ -73,7 +73,23 @@ This method is widely used in text classification. What is important when applyi
 	\item Set of classes (categories) $C = {c_0,...,c_w}$
 \end{itemize}  
  
-First step to obtain a class to which training data are belonging is posterior probability, $P(c_j |d_i )$
+First step to obtain a class to which training data are belonging is posterior probability, $P(c_j |d_i )$. Basing on this probabilty and multinomial model we can conclude:
+\begin{equation}
+P(c_j) = \frac{\sum_{i=1}^{|D|}P(c_j |d_i )}{|D|}
+\end{equation}
+\newline then applying Laplacian smmothing:
+\begin{equation}
+P(w_t|c_j)=\frac{1+\sum_{i=1}^{|D|}N(w_t,d_i)P(c_j|d_i)}{|V|+\sum_{s=1}^{|V|} \sum_{i=1}^{|D|}N(w_s,d_i)P(c_j|d_i)}
+\end{equation}
+\newline 
+where $N(w_t,d_i)$ is the count of the number of times the word $w_t$ occurs in document
+$d_i$ and where $P(c_j|d_i) \in \{0,1\} $ depends on the class label of the document.
+Finally, assuming that the probabilities of the words are independent given the
+class, we obtain:
+\begin{equation}
+P(c_j|d_i)=\frac{P(c_j)\prod_{k=1}^{|d_i|}P(w_{d_i,k}| c_j)}{\sum_{r=1}^{|C|}P(c_r)\prod_{k=1}^{|d_i|}P(w_{d_i,k}|c_r)}
+\end{equation}
+\newline For considered document $d_j$ with highest value of $P(c_j|d_i)$ class $c_j$ is assigned.
 
 
 
