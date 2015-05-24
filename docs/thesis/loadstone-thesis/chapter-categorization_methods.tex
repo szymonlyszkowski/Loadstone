@@ -22,13 +22,13 @@ The most often rejected phrases are those which appear the most frequently in pa
 
 \section{Feature Extraction}
 
-Feature Extraction method as its name states allow user to extract particular parts to avoid further repetitions and introduce more uniform steps enabling human easier interpretation. Features are basically values which are computed for corresponding phrases. Phrases are dividing to two categories:
+Feature Extraction method as its name states allow user to extract particular parts to avoid further repetitions and introduce more uniform steps enabling human easier interpretation. Features are basically phrases which can pretend later to corresponding classes (POI categories). Phrases are dividing to two categories:
 \begin{itemize}
 	\item single word
 	\item multi-word
 \end{itemize}
-To compute frequency of single words TF-IDF can be used. This method will be described later in this thesis. In case of \textbf{single word} task is not complicated because of its "non-complex nature". It is easy to detach words from each other for computer machine.
-\\ \newline\textbf{Multi-word} is much more complicated construction which can consists of two or more consecutive words. Although it is difficult to clearly define how multi-world looks like, it can change meaning when atomic parts (words) are changed in order or can be translated directly. What is more human avoid repetitions of the same word when create text but when using multi-words the latter are not introduced by their counterparts to provide disambiguity. Such approach allows for better context clarity. This is the reason to deeply analyze multi-words. Multi-words can be retrieved using many different methods like: \textit{semi-supervised document classification, inspection, frequency approach, sentence comparison, mutual information}.
+To compute frequency of single words TF-IDF\cite{2}\cite{3} can be used. This method will be described later in this thesis. In case of \textbf{single word} task is not complicated because of its "non-complex nature". It is easy to detach words from each other for computer machine.
+\\ \newline\textbf{Multi-word} is much more complicated construction which can consists of two or more consecutive words. Although it is difficult to clearly define how multi-world looks like, it can change meaning when atomic parts (words) are changed in order or can be translated directly. What is more human avoid repetitions of the same word when create text but when using multi-words the latter are not introduced by their counterparts to provide disambiguity. Such approach allows for better context clarity. This is the reason to deeply analyze multi-words. Multi-words can be retrieved using many different methods like: \textit{semi-supervised document classification, inspection, frequency approach, sentence comparison, mutual information}\cite{1}.
 
 \subsection{TF-IDF}
 \textbf{Term Frequency - Inverse Document Frequency} is basically about computing frequency of word occurences. When considering input data (document) it is presented as a vector of weights. Vector consists of phrases weights occuring in document. Result of TF-IDF is an information about phrase frequency occurance but in balanced way - it includes word frequency in whole collection of documents. Such approach disables local increases of importance in total (if given phrase doesn't occur relatively uniformly its weight does not increase).\\ \textbf{Term Frequency} is denoted by following formula:
@@ -53,8 +53,28 @@ where:\\
 $term_{i,j}$ is amount of phrase (term) occurrences in given document $doc_j$\\
 $D$ is collection of documents
 
-\subsection{Semi-supervised document classification}
-\todo{Przykładowa pół nadzorowana ekstrakcja multi-word}
+\subsection{Semi-supervised multi-word extraction}
+Depending on the topic of input data we can try to extract multi-words using human help. As the main topic are POIs we can apply \textbf{External Glossary of Terms} or \textbf{bag of words}(BOW)\cite{1} which can consist phrases such as: "Tourist Information", "Old Town". Output of multi-word extraction can be simply compared if it is included in defined BOW. If comparison is positive multi-word is taken for further processing. To extract multi-word from given input (document) $doc_j$ we can apply rule:
+\newline\textbf{Compare two sentences:}
+\begin{enumerate}	
+	\item Analyze each word $word_i$ in sentence $sentence_j$ of document $doc_k$.
+	\item For every word $word_i$ check if is equal to word $word_l$ in sentence $sentence_m$ of document $doc_k$
+	\item While $word_i$ == $word_l$ increase counter $counter_c$ by one. 
+	\item If $counter_c$ is greater then one we append $word_l$ to $word_i + counter_c$ 
+\end{enumerate}
+Such steps will output multi-word for sentences: $sentence_j$ and $sentence_m$. To extract multi-words for document we have to for every sentence $sentence_j$ compare with $sentence_{j+1}$ while $j<k$ where $k$ is a number of sentences in document $doc_k$.
+
+\section{Naïve Bayesian Classifier}
+This method is widely used in text classification. What is important when applying this method is size of input data. Significant factor is balance between represented classes (categories) and input data (each class need to have sufficient training data). What is more, method considers complete independence between features which is not always true - \textit{'naive' word genesis e.g (analyzing data describing relation between age and income it is quite common that the older person is the income is higher).} \cite{4}
+\newline When applying Naive Bayesian Classifier we have to define following factors:
+\begin{itemize}
+	\item Collection of documents $D = {d_0,...,d_i}$
+	\item Set of words (features) $W = {w_0,...,w_j}$ - extracted previously in Feature Extraction phase
+	\item Set of classes (categories) $C = {c_0,...,c_w}$
+\end{itemize}  
+ 
+First step to obtain a class to which training data are belonging is posterior probability, $P(c_j |d_i )$
+
 
 
 
