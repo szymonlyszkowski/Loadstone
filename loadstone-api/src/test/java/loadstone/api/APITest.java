@@ -30,16 +30,16 @@ public class APITest {
 
     @Test
     public void shouldReturnCategoryServices() {
-        assertEquals(Categories.SERVICES, api.analyzePlace(loadstoneTotalDataObjectModel1));
+        assertEquals(NACE_Categories.SERVICES, api.analyzePlace(loadstoneTotalDataObjectModel1));
     }
 
     @Test
     public void shouldReturnCategoryAutomotive() {
-        assertEquals(Categories.AUTOMOTIVE,api.analyzePlace(loadstoneTotalDataObjectModel2));
+        assertEquals(NACE_Categories.AUTOMOTIVE,api.analyzePlace(loadstoneTotalDataObjectModel2));
     }
 
     @Test
     public void shouldNotReturnCategory() {
-        assertEquals(Categories.NOT_CLASSIFIED, api.analyzePlace(loadstoneTotalDataObjectModelEmpty));
+        assertEquals(NACE_Categories.NOT_CLASSIFIED, api.analyzePlace(loadstoneTotalDataObjectModelEmpty));
     }
 }

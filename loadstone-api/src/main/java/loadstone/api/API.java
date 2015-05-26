@@ -9,14 +9,14 @@ public class API {
 
     private CategoriesTree categoriesTree = new CategoriesTree();
 
-    public Categories analyzePlace(LoadstoneTotalDataObjectModel place) {
+    public NACE_Categories analyzePlace(LoadstoneTotalDataObjectModel place) {
         String placeName = place.getName();
         return analyzeName(placeName);
     }
 
-    private Categories analyzeName(String poiDescription) {
+    private NACE_Categories analyzeName(String poiDescription) {
         if (!isCategorized(poiDescription))
-            return Categories.NOT_CLASSIFIED;
+            return NACE_Categories.NOT_CLASSIFIED;
         else
             return poiClassify(poiDescription);
     }
@@ -27,7 +27,7 @@ public class API {
         return false;
     }
 
-    private Categories poiClassify(String poiDescription) {
+    private NACE_Categories poiClassify(String poiDescription) {
         return categoriesTree.getCategoriesTree().get(poiDescription);
     }
 

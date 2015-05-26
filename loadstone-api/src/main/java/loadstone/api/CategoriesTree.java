@@ -10,15 +10,15 @@ import java.util.HashMap;
  */
 public class CategoriesTree {
 
-    public HashMap<String,Categories> getCategoriesTree() {
+    public HashMap<String,NACE_Categories> getCategoriesTree() {
         return categoriesTree;
     }
 
-    private HashMap<String,Categories> categoriesTree;
+    private HashMap<String,NACE_Categories> categoriesTree;
 
     public CategoriesTree() {
         categoriesTree = new HashMap<>();
-        categoriesTree.put("usługa",Categories.SERVICES);
-        categoriesTree.put("warsztat",Categories.AUTOMOTIVE);
+        categoriesTree.put("usługa", NACE_Categories.SERVICES);
+        categoriesTree.put("warsztat", NACE_Categories.AUTOMOTIVE);
     }
 }

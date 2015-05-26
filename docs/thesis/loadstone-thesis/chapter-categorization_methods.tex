@@ -6,7 +6,7 @@ Plain text is the most friendly and convenient in use for human beings as a data
 	\item Feature Extraction - text analysis which can consider wide range of text. Useful especially to analyze human text input (internet forum comment and entries). Uses TF-IDF\footnote{Term Frequency-Inverse Document Frequency} method. The result is heuristic for further text analysis.
 	\item Naive Bayesian Classifier - method enabling direct text classification to appropriate category/phrase. It requires initial knowledge (heuristics) about given input.
 	\item SVM\footnote{Support Vector Machine} - a form of binary classification. It divides input to two different separable domains. In order to classify for particular domain one-to-one comparison is applied.
-	\item VSM \footnote{Vector Space Model} - method of text indexing and weight measuring. Already weighted indices are easier to give a hint for human which document to query. In the last stage measures text content simillarity according to given query.
+	\item VSM \footnote{Vector Space Model} - method of text indexing and weight measuring. Already weighted indices are easier to give a hint for human which document to query. In the last stage measures text content simillarity according to given query - \textit{Centroid Classifier}.
 	       
 \end{itemize}
 
@@ -15,7 +15,6 @@ The most important function of preprocessing is obviously downsizing of input da
 \begin{itemize}
 	\item Performance - the less text to analyze the result can be obtained faster
 	\item Complexity - unnecessary phrases can influence in futher steps on classification correctness (dim heuristics)
-	zawartość...
 \end{itemize}
 
 The most often rejected phrases are those which appear the most frequently in particular language. Concering english language phrases like: \textit{the, a, e.g, i.e} does not introduce any hint for further classification. This is the reason why processing of such statments can be abandoned in further steps. Each document should be human analyzed properly before applying patterns to reject. Patterns will differ significantly if given input will be database entry, HTML page or plain forum comment.
@@ -27,7 +26,7 @@ Feature Extraction method as its name states allow user to extract particular pa
 	\item single word
 	\item multi-word
 \end{itemize}
-To compute frequency of single words TF-IDF\cite{2}\cite{3} can be used. This method will be described later in this thesis. In case of \textbf{single word} task is not complicated because of its "non-complex nature". It is easy to detach words from each other for computer machine.
+To compute frequency of single words TF-IDF\cite{wiki_a}\cite{3} can be used. This method will be described later in this thesis. In case of \textbf{single word} task is not complicated because of its "non-complex nature". It is easy to detach words from each other for computer machine.
 \\ \newline\textbf{Multi-word} is much more complicated construction which can consists of two or more consecutive words. Although it is difficult to clearly define how multi-world looks like, it can change meaning when atomic parts (words) are changed in order or can be translated directly. What is more human avoid repetitions of the same word when create text but when using multi-words the latter are not introduced by their counterparts to provide disambiguity. Such approach allows for better context clarity. This is the reason to deeply analyze multi-words. Multi-words can be retrieved using many different methods like: \textit{semi-supervised document classification, inspection, frequency approach, sentence comparison, mutual information}\cite{1}.
 
 \subsection{TF-IDF}
@@ -73,7 +72,7 @@ This method is widely used in text classification. What is important when applyi
 	\item Set of classes (categories) $C = {c_0,...,c_w}$
 \end{itemize}  
  
-First step to obtain a class to which training data are belonging is posterior probability, $P(c_j |d_i )$. Basing on this probabilty and multinomial model we can conclude:
+First step to obtain a class to which training data are belonging is posterior probability, $P(c_j |d_i )$. Basing on this probabilty and multinomial model \cite{5}we can conclude:
 \begin{equation}
 P(c_j) = \frac{\sum_{i=1}^{|D|}P(c_j |d_i )}{|D|}
 \end{equation}
@@ -90,6 +89,54 @@ class, we obtain:
 P(c_j|d_i)=\frac{P(c_j)\prod_{k=1}^{|d_i|}P(w_{d_i,k}| c_j)}{\sum_{r=1}^{|C|}P(c_r)\prod_{k=1}^{|d_i|}P(w_{d_i,k}|c_r)}
 \end{equation}
 \newline For considered document $d_j$ with highest value of $P(c_j|d_i)$ class $c_j$ is assigned.
+
+\section{Support Vector Machine}
+This method is mainly used for well prepared and defined input data. As there are many sources of ready-to-use is widely used for POI classification. Methodes preseneted previously are more indicated to data in unstructured representation. Let assume initial conditions \cite{6}:
+\begin{itemize}
+	\item POI $p_i$ is represented as a n-dimensinal vector $x_i \in R^n$
+	\item $y \in Y$ and is a category (class) of POI $p_i$
+	\item Category is defined as: $y=f(x_i)$
+	\item Data set: $D={(x_1,y_1),...,(x_i,y_i)}$
+	\item For simplicity we assume $Y=\{-1,+1\}$
+\end{itemize}
+SVM for every $(x_i,y_i$) can be defined by finding optimal hyperplane $x \times w + b$ filling requirements of:
+\begin{equation}
+x_i \times w + b \geq +1, y_i= +1
+\end{equation}
+\begin{equation}
+x_i \times w + b \leq -1, y_i= -1
+\end{equation}
+Parameters $x,b$ are optimized using training data D. Obviously such formulas allow only for binary classification (distinguish between two categories). If resultant data are not linearly separable (category cannot be clearly defined) there can be applied addtional method \textit{kernel trick}. If separation is available and classification over more complex set is required \textit{one-against-one}\cite{7} strategy is used. To optimize SVM using \textit{Soft Margin} will obtain:
+\begin{equation}
+\min_{w,\xi} ||w||\frac{1}{2} + C\sum_{i=1}^{N}\xi_i
+\end{equation}
+subjected to:
+\begin{equation}
+y_i (x_i \times w + b) \geq 1 - \xi_i,  \forall_i \xi_i \geq 0
+\end{equation}
+Variable C is a parameter which allow user to control training error, while $\xi_i$ is slack variable. Soft Margin method define hyberplane which splits two sets as much as possible but in the same time leave maximum distance from data which were separated without any problems.\cite{7}
+The same situation is noticable when considering dual form:
+\begin{equation}
+\min_\alpha - \sum_{i=1}^{N}\alpha_i + \frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}y_iy_j\alpha_i\alpha_jx_ix_j
+\end{equation}
+subjected to:
+\begin{equation}
+\sum_{i=1}^{N}\alpha_iy_i=0, \forall_{i,0} \leq \alpha_i \leq C
+\end{equation}
+\subsection{Kernel trick}
+The most important factor about SVM is its dependance only on the input data inner products.\cite{6} When cannot clearly separate data it is possible to transform them to higher order space $\theta$ where separation is possible. It implies we apply $\theta(x_i) \times \theta(x_j)$ for data from equation (2.11). Fortunately $\theta(x_i) \times \theta(x_j)$ is equivalent to kernel $K(x_i,x_y)$. Such substitution allows to ommit computing higher order space. Kernel can be chosen from many various kernel functions e.g. polynomial. \cite{svm_wiki}
+
+\section{VSM and Centroid Classifier}
+In VSM we assume that each document $d$ is represented as a term-space vector and each term is obtained using TFIDF. Having prepared all terms in vector, centroid classifier can be computed for every class $c_i$\cite{8}.
+\newline First step is to calculate document vectors for every class $c_i$:
+\begin{equation}
+SUM_{c_i} = \sum_{d\in c_i}d
+\end{equation}
+\newline Second step is normalization of the sum $SUM_{c_i}$ to obtain centroid $C_i$ for class $c_i$:
+\begin{equation}
+C_i = \frac{SUM_{c_i}}{||SUM_{c_i}||_2}
+\end{equation}
+Where denominator in equation (2.14) is second norm of vector $||SUM_{c_i}||$. Basing on vectors of classes $C_i$ we can define to which class document $d_i$ belongs. Classification is done by investigation how input vector data is similar to class vector. 
 
 
 
