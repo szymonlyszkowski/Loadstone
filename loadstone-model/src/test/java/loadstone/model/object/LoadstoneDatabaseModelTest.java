@@ -33,10 +33,11 @@ public class LoadstoneDatabaseModelTest {
     }
 
     @Test
-    public void bla() throws NoSuchFieldException, SQLException, ClassNotFoundException {
+    public void shouldReturn6thDatabaseRow() throws NoSuchFieldException, SQLException, ClassNotFoundException {
         LoadstoneDatabaseModel loadstoneDatabaseModel = new LoadstoneDatabaseModel();
         List<LoadstoneTotalDataObjectModel> all = loadstoneDatabaseModel.getObjectModel(LoadstoneTotalDataObjectModel.class).getAll();
-        System.out.println(all.get(6));
+        assertEquals(all.get(6).toString(), "TotalData{Accuracy=1.0, Name='adres  rzechta 52', Latitude=5.15935989E8, Longitude=1.88483558E8, Satellites=0, "
+                + "Priority=0, Userid=12345, Id=748717}");
     }
 
 }

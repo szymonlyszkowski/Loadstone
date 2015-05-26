@@ -1,4 +1,4 @@
-package loadstone.api;/**
+package loadstone.model.poi.categories;/**
  * Copyright (c) 2014 TomTom International B.V. All rights reserved.
  * TomTom PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -28,15 +28,25 @@ public enum NACE_Categories {
     R("R - Arts, entertainment and recreation "),
     S("S - Other services activities "),
     T("T - Activities of households as employers; undifferentiated goods - and services - producing activities of households for own use "),
-    U("U - Activities of extraterritorial organisations and bodies ");
-
-    public String getCategoryDescription() {
-        return categoryDescription;
-    }
+    U("U - Activities of extraterritorial organisations and bodies "),
+    NOT_CLASSIFIED("Not classified");
 
     private final String categoryDescription;
 
     private NACE_Categories(String categoryDescription) {
         this.categoryDescription = categoryDescription;
+    }
+
+    public static NACE_Categories checkIfAnyCategoryContains(String description) {
+        NACE_Categories[] categories = NACE_Categories.values();
+        for (NACE_Categories category : categories) {
+            if (category.getCategoryDescription().contains(description))
+                return category;
+        }
+        return NOT_CLASSIFIED;
+    }
+
+    public String getCategoryDescription() {
+        return categoryDescription;
     }
 }
