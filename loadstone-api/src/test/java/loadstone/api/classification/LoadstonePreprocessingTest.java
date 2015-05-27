@@ -1,5 +1,6 @@
 package loadstone.api.classification;
 
+import loadstone.api.classification.loadstone.LoadstonePreprocessing;
 import loadstone.model.DataModel;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import org.junit.Before;

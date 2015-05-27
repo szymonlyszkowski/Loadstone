@@ -1,6 +1,6 @@
 package loadstone.api;
 
-import loadstone.model.object.LoadstoneTotalDataObjectModel;
+import loadstone.model.DataModel;
 import loadstone.model.poi.categories.NACE_Categories;
 
 /**
@@ -8,7 +8,7 @@ import loadstone.model.poi.categories.NACE_Categories;
  */
 public class API {
 
-    public NACE_Categories analyzePlace(LoadstoneTotalDataObjectModel place) {
+    public NACE_Categories analyzePlace(DataModel place) {
         String placeName = place.getName();
         return analyzeName(placeName);
     }
