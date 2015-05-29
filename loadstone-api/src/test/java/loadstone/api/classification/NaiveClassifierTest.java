@@ -1,8 +1,4 @@
-package loadstone.api.classification;/**
- * Copyright (c) 2014 TomTom International B.V. All rights reserved.
- * TomTom PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
-
+package loadstone.api.classification;
 import loadstone.model.DataModel;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import loadstone.model.poi.categories.NACE_Categories;
@@ -22,5 +18,23 @@ public class NaiveClassifierTest {
         NaiveClassifier naiveClassifier = new NaiveClassifier();
         NACE_Categories selectedCategory = naiveClassifier.naiveClassify(model);
         assertEquals(NACE_Categories.C, selectedCategory);
+    }
+
+    @Test
+    public void shouldReturnCategoryA(){
+        DataModel model = new LoadstoneTotalDataObjectModel();
+        model.setName("Manufacturing Manufacturing Manufacturing administration administration administration");
+        NaiveClassifier naiveClassifier = new NaiveClassifier();
+        NACE_Categories selectedCategory = naiveClassifier.naiveClassify(model);
+        assertEquals(NACE_Categories.A, selectedCategory);
+    }
+
+    @Test
+    public void shouldReturnCategoryNotClassified(){
+        DataModel model = new LoadstoneTotalDataObjectModel();
+        model.setName(" ");
+        NaiveClassifier naiveClassifier = new NaiveClassifier();
+        NACE_Categories selectedCategory = naiveClassifier.naiveClassify(model);
+        assertEquals(NACE_Categories.NOT_CLASSIFIED, selectedCategory);
     }
 }
