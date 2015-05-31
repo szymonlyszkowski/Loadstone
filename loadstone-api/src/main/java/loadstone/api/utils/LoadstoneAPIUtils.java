@@ -1,4 +1,4 @@
-package loadstone.api;
+package loadstone.api.utils;
 import java.util.List;
 
 /**

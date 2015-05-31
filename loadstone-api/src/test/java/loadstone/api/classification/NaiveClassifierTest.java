@@ -4,6 +4,9 @@ import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import loadstone.model.poi.categories.NACE_Categories;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static junit.framework.TestCase.assertEquals;
 
 /**
@@ -16,8 +19,8 @@ public class NaiveClassifierTest {
         DataModel model = new LoadstoneTotalDataObjectModel();
         model.setName("Manufacturing Manufacturing Manufacturing Manufacturing Manufacturing Manufacturing administration administration administration");
         NaiveClassifier naiveClassifier = new NaiveClassifier();
-        NACE_Categories selectedCategory = naiveClassifier.naiveClassify(model);
-        assertEquals(NACE_Categories.C, selectedCategory);
+        List<NACE_Categories> selectedCategory = naiveClassifier.naiveClassify(model);
+        assertEquals(Arrays.asList(NACE_Categories.C), selectedCategory);
     }
 
     @Test
@@ -25,8 +28,8 @@ public class NaiveClassifierTest {
         DataModel model = new LoadstoneTotalDataObjectModel();
         model.setName("Manufacturing Manufacturing Manufacturing administration administration administration");
         NaiveClassifier naiveClassifier = new NaiveClassifier();
-        NACE_Categories selectedCategory = naiveClassifier.naiveClassify(model);
-        assertEquals(NACE_Categories.A, selectedCategory);
+        List<NACE_Categories> selectedCategory = naiveClassifier.naiveClassify(model);
+        assertEquals(Arrays.asList(NACE_Categories.C, NACE_Categories.O), selectedCategory);
     }
 
     @Test
@@ -34,7 +37,7 @@ public class NaiveClassifierTest {
         DataModel model = new LoadstoneTotalDataObjectModel();
         model.setName(" ");
         NaiveClassifier naiveClassifier = new NaiveClassifier();
-        NACE_Categories selectedCategory = naiveClassifier.naiveClassify(model);
-        assertEquals(NACE_Categories.NOT_CLASSIFIED, selectedCategory);
+        List<NACE_Categories> selectedCategory = naiveClassifier.naiveClassify(model);
+        assertEquals(Arrays.asList(NACE_Categories.NOT_CLASSIFIED), selectedCategory);
     }
 }

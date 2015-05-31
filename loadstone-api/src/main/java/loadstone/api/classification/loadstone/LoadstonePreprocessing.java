@@ -3,7 +3,7 @@ package loadstone.api.classification.loadstone;/**
  * TomTom PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-import loadstone.api.classification.AbstractResourcePreprocessing;
+import loadstone.api.classification.interfaces.AbstractResourcePreprocessing;
 import loadstone.model.DataModel;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import org.apache.commons.lang3.StringUtils;

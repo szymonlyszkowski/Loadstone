@@ -37,7 +37,7 @@ public enum NACE_Categories {
         this.categoryDescription = categoryDescription;
     }
 
-    public static NACE_Categories checkIfAnyCategoryContains(String description) {
+    public static NACE_Categories retrunCategoryIfFirstEncounteredContains(String description) {
         NACE_Categories[] categories = NACE_Categories.values();
         for (NACE_Categories category : categories) {
             if (category.getCategoryDescription().contains(description))

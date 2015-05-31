@@ -2,6 +2,7 @@ package loadstone.api;
 
 import loadstone.api.classification.loadstone.LoadstonePreprocessing;
 import loadstone.api.connection.LoadstoneDatabase;
+import loadstone.api.utils.LoadstoneAPIUtils;
 import loadstone.model.DataModel;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import org.junit.Ignore;

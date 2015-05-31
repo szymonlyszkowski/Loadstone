@@ -1,7 +1,7 @@
 package loadstone.model.object;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import loadstone.model.database.LoadstoneDatabaseModel;
+import org.junit.Ignore;
 import org.junit.Test;
 import za.co.neilson.sqlite.orm.ObjectModelColumn;
 

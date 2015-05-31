@@ -1,4 +1,4 @@
-package loadstone.api;
+package loadstone.api.connection.loadstone;
 
 import loadstone.api.connection.LoadstoneDatabase;
 import loadstone.model.database.LoadstoneDatabaseModel;
@@ -22,8 +22,8 @@ public class LoadstoneDatabaseConnectionTest {
     private static final String DATABASE_NAME = "loadStoneDataBase.db";
     private static final int DATABASE_VERSION = 1;
     private static final String COLUMN_0_TOKEN = "name";
-    private LoadstoneDatabaseModel loadStoneDatabaseModel;
     ObjectModel<LoadstoneTotalDataObjectModel, ResultSet, HashMap<String, Object>> loadStoneObjectModel;
+    private LoadstoneDatabaseModel loadStoneDatabaseModel;
 
     @Before
     public void prepareModel() throws NoSuchFieldException, SQLException, ClassNotFoundException {
