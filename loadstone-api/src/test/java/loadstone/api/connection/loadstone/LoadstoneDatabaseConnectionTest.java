@@ -1,6 +1,5 @@
 package loadstone.api.connection.loadstone;
 
-import loadstone.api.connection.LoadstoneDatabase;
 import loadstone.model.database.LoadstoneDatabaseModel;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import org.junit.Before;

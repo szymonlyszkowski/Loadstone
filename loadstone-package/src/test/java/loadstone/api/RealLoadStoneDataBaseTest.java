@@ -1,7 +1,7 @@
 package loadstone.api;
 
 import loadstone.api.classification.loadstone.LoadstonePreprocessing;
-import loadstone.api.connection.LoadstoneDatabase;
+import loadstone.api.connection.loadstone.LoadstoneDatabase;
 import loadstone.api.utils.LoadstoneAPIUtils;
 import loadstone.model.DataModel;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;
@@ -36,7 +36,8 @@ public class RealLoadStoneDataBaseTest {
         loadstoneTotalDataObjectModel.setPriority(0);
         loadstoneTotalDataObjectModel.setUserid(12345);
         loadstoneTotalDataObjectModel.setId(748715);
-        assertEquals(loadstoneTotalDataObjectModel, loadStoneDatabaseModel.getAll().get(4));
+        DataModel dataModel = new LoadstoneDatabase().returnResource("4");
+        assertEquals(loadstoneTotalDataObjectModel, dataModel);
     }
 
     @Ignore("Turn on only when want to update whole data base using preprocessing with given patterns")
