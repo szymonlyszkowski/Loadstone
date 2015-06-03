@@ -4,9 +4,6 @@ import loadstone.model.poi.categories.NACE_Categories;
 
 import java.util.HashMap;
 
-/**
- * @author Szymon.Lyszkowski@tomtom.com on 27.05.15.
- */
 public final class LoadstoneBOW {
 
     private static final HashMap<String, NACE_Categories> loadstoneBOW = new HashMap<>();

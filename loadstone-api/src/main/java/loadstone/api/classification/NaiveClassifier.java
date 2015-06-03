@@ -12,7 +12,7 @@ public class NaiveClassifier implements Classifier {
     private static String NON_WORD_DELIMITER = "\\W";
     private static int NO_WORDS_TO_ANALYZE = 0;
 
-    public List<NACE_Categories> naiveClassify(DataModel dataModel) {
+    private List<NACE_Categories> naiveClassify(DataModel dataModel) {
         String name = dataModel.getName();
         Bag categoryBag = listOfCategoriesWhichOccurredInName(name);
 

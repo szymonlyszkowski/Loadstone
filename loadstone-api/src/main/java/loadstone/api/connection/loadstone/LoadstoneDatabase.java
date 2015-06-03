@@ -1,6 +1,6 @@
 package loadstone.api.connection.loadstone;
 
-import loadstone.api.connection.interfaces.ResourceConnection;
+import loadstone.api.connection.interfaces.AbstractResourceConnection;
 import loadstone.api.utils.LoadstoneAPIUtils;
 import loadstone.model.DataModel;
 import loadstone.model.database.LoadstoneDatabaseModel;
@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 /**
  * Class for loadstone database access
  */
-public class LoadstoneDatabase implements ResourceConnection{
+public class LoadstoneDatabase implements AbstractResourceConnection {
 
     private static LoadstoneDatabaseModel model;
     /**
