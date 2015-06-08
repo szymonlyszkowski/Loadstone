@@ -3,11 +3,13 @@ package loadstone.api.classification.loadstone;/**
  * TomTom PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
+import com.google.common.collect.Lists;
 import loadstone.api.classification.interfaces.Classifier;
 import loadstone.model.DataModel;
 import loadstone.model.poi.categories.NACE_Categories;
+import org.apache.commons.collections.Bag;
+import org.apache.commons.collections.bag.HashBag;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -18,19 +20,20 @@ import java.util.List;
 public class LoadstoneSemiSupervisedClassifier implements Classifier {
 
     private HashMap<String, NACE_Categories> loadstoneBOW = LoadstoneBOW.getLoadstoneBOW();
-    private List<NACE_Categories> classifiedCategories = new ArrayList<>();
+    private Bag classifiedCategories = new HashBag();
+    private static String NON_WORD_DELIMITER = "\\s++";
 
     private List<NACE_Categories> semiSupervisedClassify(DataModel dataModel) {
-        String nameConsidered = dataModel.getName();
+        String[] nameConsidered = dataModel.getName().split(NON_WORD_DELIMITER);
         for (String nameToClassify : loadstoneBOW.keySet()) {
-            if (nameConsidered.contains(nameToClassify)) {
+            if (Arrays.asList(nameConsidered).contains(nameToClassify)) {
                 classifiedCategories.add(loadstoneBOW.get(nameToClassify));
             }
         }
         if (classifiedCategories.isEmpty()) {
             return Arrays.asList(NACE_Categories.NOT_CLASSIFIED);
         }
-        return classifiedCategories;
+        return Lists.newArrayList(classifiedCategories.uniqueSet());
     }
 
     @Override

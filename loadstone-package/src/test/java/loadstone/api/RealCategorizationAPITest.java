@@ -6,15 +6,14 @@ import loadstone.api.classification.loadstone.LoadstoneSemiSupervisedClassifier;
 import loadstone.api.connection.loadstone.LoadstoneDatabase;
 import loadstone.model.DataModel;
 import loadstone.model.poi.categories.NACE_Categories;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static junit.framework.Assert.assertEquals;
 
 /**
  * @author Szymon.Lyszkowski@tomtom.com on 15.03.15.
@@ -37,6 +36,7 @@ public class RealCategorizationAPITest {
         dataModelConsidered = dataModels.get(0);
     }
 
+    @Ignore
     @Test
     public void categorizeNaiveClassify() throws SQLException, NoSuchFieldException, ClassNotFoundException {
         CategorizationAPI categorizationAPI = new CategorizationAPI(new NaiveClassifier(), dataModelConsidered, new LoadstonePreprocessing
@@ -45,9 +45,10 @@ public class RealCategorizationAPITest {
         List<NACE_Categories> nace_categories = categorizationAPI.categorize();
         System.out.println("Data model name after categorization process: " + categorizationAPI.getDataModel().getName());
         System.out.println("Classified categories" + nace_categories.toString());
-        assertEquals(Arrays.asList(NACE_Categories.NOT_CLASSIFIED), categorizationAPI.categorize());
+        Assertions.assertThat(nace_categories).containsExactly(NACE_Categories.NOT_CLASSIFIED);
     }
 
+    @Ignore
     @Test
     public void categorizeSemiSupervised() throws SQLException, NoSuchFieldException, ClassNotFoundException {
         CategorizationAPI categorizationAPI = new CategorizationAPI(new LoadstoneSemiSupervisedClassifier(), dataModelConsidered,
@@ -56,7 +57,6 @@ public class RealCategorizationAPITest {
         List<NACE_Categories> nace_categories = categorizationAPI.categorize();
         System.out.println("Data model name after categorization process: " + categorizationAPI.getDataModel().getName());
         System.out.println("Classified categories" + nace_categories.toString());
-        assertEquals("Expected categories wrong!", Arrays.asList(NACE_Categories.K,NACE_Categories.K,NACE_Categories.H,NACE_Categories.K), nace_categories);
-
+        Assertions.assertThat(nace_categories).containsExactly(NACE_Categories.K, NACE_Categories.H);
     }
 }
