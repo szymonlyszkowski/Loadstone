@@ -36,7 +36,7 @@ public class RealCategorizationAPITest {
         dataModelConsidered = dataModels.get(0);
     }
 
-    @Ignore
+    @Ignore("Maven cannot access database - need to be solved. When running from IDE works")
     @Test
     public void categorizeNaiveClassify() throws SQLException, NoSuchFieldException, ClassNotFoundException {
         CategorizationAPI categorizationAPI = new CategorizationAPI(new NaiveClassifier(), dataModelConsidered, new LoadstonePreprocessing
@@ -48,7 +48,7 @@ public class RealCategorizationAPITest {
         Assertions.assertThat(nace_categories).containsExactly(NACE_Categories.NOT_CLASSIFIED);
     }
 
-    @Ignore
+    @Ignore("Maven cannot access database - need to be solved. When running from IDE works")
     @Test
     public void categorizeSemiSupervised() throws SQLException, NoSuchFieldException, ClassNotFoundException {
         CategorizationAPI categorizationAPI = new CategorizationAPI(new LoadstoneSemiSupervisedClassifier(), dataModelConsidered,
