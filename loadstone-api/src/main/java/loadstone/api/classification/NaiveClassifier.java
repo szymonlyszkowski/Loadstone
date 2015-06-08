@@ -9,7 +9,7 @@ import org.apache.commons.collections.bag.HashBag;
 import java.util.*;
 
 public class NaiveClassifier implements Classifier {
-    private static String NON_WORD_DELIMITER = "\\W";
+    private static String NON_WORD_DELIMITER = "\\s++";
     private static int NO_WORDS_TO_ANALYZE = 0;
 
     private List<NACE_Categories> naiveClassify(DataModel dataModel) {
@@ -40,7 +40,7 @@ public class NaiveClassifier implements Classifier {
         if (splitNames == null || splitNames.length == NO_WORDS_TO_ANALYZE)
             return new HashBag(Arrays.asList(NACE_Categories.NOT_CLASSIFIED));
         for (String splitName : splitNames) {
-            categoryOccurrencesInName.add(NACE_Categories.retrunCategoryIfFirstEncounteredContains(splitName));
+            categoryOccurrencesInName.add(NACE_Categories.returnCategoryIfFirstEncounteredContains(splitName));
         }
         return categoryOccurrencesInName;
     }

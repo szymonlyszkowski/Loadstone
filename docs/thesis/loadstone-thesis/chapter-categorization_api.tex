@@ -86,6 +86,15 @@ Frequency for bag of words was prepared using bash shell script using awk tool w
 
 Basing on Algorithm \ref{alg:analyze_freuency} it was possible to easily define those phrases which were most occuring and were significant or absolutely unncessary for text categorization. Obtaing list of words with their occurences in document there could be selected which can be used in BOW and which can be used for preprocessing as a hint.
 
+\subsection{Class loadstone.api.classification.loadstone.LoadstoneSemiSupervisedClassifier}
+Class which enables to classify POI using class LoadstoneBOW prepared previously. This class does not include descriptions from class NACECategories. Only descriptions from LoadstoneBOW are taken into consideration.
 
- 
+\subsection{Class loadstone.api.connection.loadstone.LoadstoneDatabase}
+This class takes responsibility for gathering loadstone database. This class is implementing AbstractResourceConnection to get all possible entities from loadstone database. 
+\todo{uml class} 
+\subsubsection{LoadstoneDatabaseUpdater Singleton Design Pattern}
+To modify data inside database loadstone.api.connection.loadstone.LoadstoneDatabaseUpdater should be used. It is using Singleton pattern to assure atomicity of operation on database. It defines static method \textit{getObjectModelSingleton()} returns static object on which user can work to modify data. Such approach allows for data correctness without bothering some other object is using database.\todo{uml}  
+
+\subsection{Class loadstone.api.utils.LodstoneAPIUtils}
+This class is just utility for user to construct appropriate SQL query to loadstone database. This utility only expect from user to input patterns which are supposed to be included during search for expected tuples in database. 
 \todo{Inne metody processingu do zaimplementowania}

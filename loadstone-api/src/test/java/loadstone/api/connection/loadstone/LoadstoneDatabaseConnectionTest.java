@@ -27,7 +27,7 @@ public class LoadstoneDatabaseConnectionTest {
     @Before
     public void prepareModel() throws NoSuchFieldException, SQLException, ClassNotFoundException {
         loadStoneDatabaseModel = new LoadstoneDatabaseModel();
-        loadStoneObjectModel = LoadstoneDatabase.getObjectModelSingleton();
+        loadStoneObjectModel = LoadstoneDatabaseUpdater.getObjectModelSingleton();
     }
 
     @Test

@@ -2,6 +2,7 @@ package loadstone.api;
 
 import loadstone.api.classification.loadstone.LoadstonePreprocessing;
 import loadstone.api.connection.loadstone.LoadstoneDatabase;
+import loadstone.api.connection.loadstone.LoadstoneDatabaseUpdater;
 import loadstone.api.utils.LoadstoneAPIUtils;
 import loadstone.model.DataModel;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;
@@ -26,7 +27,6 @@ public class RealLoadStoneDataBaseTest {
     @Ignore("Running from IDE works but when running by maven fails dunno why!")
     @Test
     public void shouldReturn4thTuple() throws SQLException, NoSuchFieldException, ClassNotFoundException {
-        ObjectModel<LoadstoneTotalDataObjectModel, ResultSet, HashMap<String, Object>> loadStoneDatabaseModel = LoadstoneDatabase.getObjectModelSingleton();
         LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModel = new LoadstoneTotalDataObjectModel();
         loadstoneTotalDataObjectModel.setName("adres  rzechta 56");
         loadstoneTotalDataObjectModel.setAccuracy(1.0);
@@ -48,7 +48,7 @@ public class RealLoadStoneDataBaseTest {
         patterns.add("adres");
         patterns.add(".");
         LoadstonePreprocessing preprocessing = new LoadstonePreprocessing(patterns);
-        ObjectModel<LoadstoneTotalDataObjectModel, ResultSet, HashMap<String, Object>> objectModelSingleton = LoadstoneDatabase.getObjectModelSingleton();
+        ObjectModel<LoadstoneTotalDataObjectModel, ResultSet, HashMap<String, Object>> objectModelSingleton = LoadstoneDatabaseUpdater.getObjectModelSingleton();
         List<LoadstoneTotalDataObjectModel> allFromDB = objectModelSingleton.getAll(LoadstoneAPIUtils.prepareSqlQuery(patterns));
         List<DataModel> workingCollection = new ArrayList<>();
         workingCollection.addAll(allFromDB);

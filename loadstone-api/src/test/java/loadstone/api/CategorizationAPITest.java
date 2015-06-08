@@ -1,48 +1,46 @@
 package loadstone.api;
 
+import loadstone.api.classification.NaiveClassifier;
+import loadstone.api.classification.loadstone.LoadstonePreprocessing;
+import loadstone.api.classification.loadstone.LoadstoneSemiSupervisedClassifier;
 import loadstone.model.object.LoadstoneTotalDataObjectModel;
 import loadstone.model.poi.categories.NACE_Categories;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
- * @author Szymon.Lyszkowski@tomtom.com on 15.03.15.
+ * @author Szymon.Lyszkowski@tomtom.com on 08.06.15.
  */
 public class CategorizationAPITest {
+
     private LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModel1;
-    private LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModel2;
-    private LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModelEmpty;
-    private CategorizationAPI categorizationApi;
+    private ArrayList patternsToBeTrimmedFromConsideredDataModel;
 
     @Before
     public void prepareTotalData() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+        patternsToBeTrimmedFromConsideredDataModel = new ArrayList();
         loadstoneTotalDataObjectModel1 = new LoadstoneTotalDataObjectModel();
-        loadstoneTotalDataObjectModel2 = new LoadstoneTotalDataObjectModel();
-        loadstoneTotalDataObjectModelEmpty = new LoadstoneTotalDataObjectModel();
-        loadstoneTotalDataObjectModel1.setName("usługa");
-        loadstoneTotalDataObjectModel2.setName("warsztat");
-        loadstoneTotalDataObjectModelEmpty.setName("empty");
-        categorizationApi = new CategorizationAPI();
-    }
-
-
-
-    @Test
-    public void shouldReturnCategoryServices() {
-        assertEquals(NACE_Categories.NOT_CLASSIFIED, categorizationApi.analyzePlaceForFirstPhraseOccurrence(loadstoneTotalDataObjectModel1));
+        loadstoneTotalDataObjectModel1.setName("bankomat and pizza");
     }
 
     @Test
-    public void shouldReturnCategoryAutomotive() {
-        assertEquals(NACE_Categories.NOT_CLASSIFIED, categorizationApi.analyzePlaceForFirstPhraseOccurrence(loadstoneTotalDataObjectModel2));
+    public void shouldReturnCategoryNotClassified() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+        CategorizationAPI categorizationAPI = new CategorizationAPI(new NaiveClassifier(), loadstoneTotalDataObjectModel1,
+                new LoadstonePreprocessing(patternsToBeTrimmedFromConsideredDataModel));
+        assertEquals(Arrays.asList(NACE_Categories.NOT_CLASSIFIED), categorizationAPI.categorize());
     }
 
     @Test
-    public void shouldNotReturnCategory() {
-        assertEquals(NACE_Categories.NOT_CLASSIFIED, categorizationApi.analyzePlaceForFirstPhraseOccurrence(loadstoneTotalDataObjectModelEmpty));
+    public void shouldReturnCategoryNotClassified2() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+        CategorizationAPI categorizationAPI = new CategorizationAPI(new LoadstoneSemiSupervisedClassifier(), loadstoneTotalDataObjectModel1,
+                new LoadstonePreprocessing(patternsToBeTrimmedFromConsideredDataModel));
+        assertEquals(Arrays.asList(NACE_Categories.K,NACE_Categories.I,NACE_Categories.K), categorizationAPI.categorize());
     }
+
 }

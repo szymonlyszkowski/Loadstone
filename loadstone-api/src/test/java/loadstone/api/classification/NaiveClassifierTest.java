@@ -19,7 +19,7 @@ public class NaiveClassifierTest {
         DataModel model = new LoadstoneTotalDataObjectModel();
         model.setName("Manufacturing Manufacturing Manufacturing Manufacturing Manufacturing Manufacturing administration administration administration");
         NaiveClassifier naiveClassifier = new NaiveClassifier();
-        List<NACE_Categories> selectedCategory = naiveClassifier.naiveClassify(model);
+        List<NACE_Categories> selectedCategory = naiveClassifier.classify(model);
         assertEquals(Arrays.asList(NACE_Categories.C), selectedCategory);
     }
 
@@ -28,7 +28,7 @@ public class NaiveClassifierTest {
         DataModel model = new LoadstoneTotalDataObjectModel();
         model.setName("Manufacturing Manufacturing Manufacturing administration administration administration");
         NaiveClassifier naiveClassifier = new NaiveClassifier();
-        List<NACE_Categories> selectedCategory = naiveClassifier.naiveClassify(model);
+        List<NACE_Categories> selectedCategory = naiveClassifier.classify(model);
         assertEquals(Arrays.asList(NACE_Categories.C, NACE_Categories.O), selectedCategory);
     }
 
@@ -37,7 +37,7 @@ public class NaiveClassifierTest {
         DataModel model = new LoadstoneTotalDataObjectModel();
         model.setName(" ");
         NaiveClassifier naiveClassifier = new NaiveClassifier();
-        List<NACE_Categories> selectedCategory = naiveClassifier.naiveClassify(model);
+        List<NACE_Categories> selectedCategory = naiveClassifier.classify(model);;
         assertEquals(Arrays.asList(NACE_Categories.NOT_CLASSIFIED), selectedCategory);
     }
 }
