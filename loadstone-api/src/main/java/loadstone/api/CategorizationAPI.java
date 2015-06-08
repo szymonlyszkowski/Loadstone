@@ -16,12 +16,12 @@ public class CategorizationAPI {
     private DataModel dataModel;
     private Classifier classifier;
 
-    public CategorizationAPI() {
+    private CategorizationAPI() {
     }
 
-    public CategorizationAPI(DataModel dataModel, AbstractResourcePreprocessing preprocessing) {
+    public CategorizationAPI(Classifier classifier, DataModel dataModel) {
         this.dataModel = dataModel;
-        this.preprocessing = preprocessing;
+        this.classifier = classifier;
     }
 
     public CategorizationAPI(Classifier classifier, DataModel dataModel, AbstractResourcePreprocessing preprocessing) {
