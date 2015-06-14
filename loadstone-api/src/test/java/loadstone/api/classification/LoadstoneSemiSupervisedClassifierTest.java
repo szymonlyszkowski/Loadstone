@@ -43,6 +43,16 @@ public class LoadstoneSemiSupervisedClassifierTest {
         List<NACE_Categories> selectedCategory = loadstoneSemiSupervisedClassifier.classify(model);
         Assertions.assertThat(selectedCategory).containsExactly(NACE_Categories.I, NACE_Categories.K);
     }
+
+    @Test
+    public void shouldReturnNotClassifiedDataFromLoadstone(){
+        DataModel model = new LoadstoneTotalDataObjectModel();
+        model.setName("bankomat i oddział bz bwk atm 24h bank ul. jana pawła ii 12 sieradz");
+        LoadstoneSemiSupervisedClassifier loadstoneSemiSupervisedClassifier = new LoadstoneSemiSupervisedClassifier();
+        List<NACE_Categories> selectedCategory = loadstoneSemiSupervisedClassifier.classify(model);
+        Assertions.assertThat(selectedCategory).containsExactly(NACE_Categories.K);
+
+    }
 }
 
 

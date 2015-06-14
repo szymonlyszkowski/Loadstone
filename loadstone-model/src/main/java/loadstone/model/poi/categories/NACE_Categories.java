@@ -12,7 +12,7 @@ public enum NACE_Categories {
     B("B - Mining and quarrying "),
     C("C - Manufacturing "),
     D("D - Electricity, gas, steam and air conditioning supply "),
-    E("E - Water supply; sewerage; waste managment and remediation activities "),
+    E("E - Water supply; sewerage; waste management and remediation activities "),
     F("F - Construction "),
     G("G - Wholesale and retail trade; repair of motor vehicles and motorcycles "),
     H("H - Transporting and storage"),

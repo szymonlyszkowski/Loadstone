@@ -40,4 +40,14 @@ public class NaiveClassifierTest {
         List<NACE_Categories> selectedCategory = naiveClassifier.classify(model);;
         assertEquals(Arrays.asList(NACE_Categories.NOT_CLASSIFIED), selectedCategory);
     }
+
+    @Test
+    public void shouldReturnNotClassifiedDataFromLoadstone(){
+        DataModel model = new LoadstoneTotalDataObjectModel();
+        model.setName("bankomat i oddział bz bwk atm 24h bank ul. jana pawła ii 12 sieradz");
+        NaiveClassifier naiveClassifier = new NaiveClassifier();
+        List<NACE_Categories> selectedCategory = naiveClassifier.classify(model);;
+        assertEquals(Arrays.asList(NACE_Categories.NOT_CLASSIFIED), selectedCategory);
+
+    }
 }

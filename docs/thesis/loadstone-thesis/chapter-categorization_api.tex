@@ -64,7 +64,8 @@ This class is deliberately delegated to preprocess data obtained from \textit{Lo
 \end{figure}
 Class organization is simple. For preprocessing functionality is responsible private method used in methods implementation of AbstractResourcePreprocessing interface. It simply process given input - rejects spaces (default behaviour) and patterns defined by user in constructor. Method is applied for single object DataModel or collection of such objects in corresponding interface methods.
 \subsection{Class loadstone.api.classification.loadstone.LoadstoneBOW}
-This class is a feature for semi-supervised classification. It is basically a hashmap which values are sections of NACE categorization system and keys are strings which were the most frequent occuring in loadstone database and assigned empirically to particular category. This class avails user to travers through map and check if category can be assigned immediately. 
+\label{loadstone_bow}
+This class is a feature for semi-supervised classification. It is basically a hashmap which values are sections of NACE categorization system and keys are strings which were the most frequenait occuring in loadstone database and assigned empirically to particular category. This class avails user to travers through map and check if category can be assigned immediately. 
 \subsubsection{Bash script analyzeDB.sh}
 \label{analyze_db}
 Frequency for bag of words was prepared using bash shell script using awk tool which is great utility for text analysis \cite{21}. Script traverses through the loadstone database text file and counts occurrence of each word which exists in document. Algorithm can be expressed in following way:
@@ -88,6 +89,7 @@ Frequency for bag of words was prepared using bash shell script using awk tool w
 Basing on Algorithm \ref{alg:analyze_freuency} it was possible to easily define those phrases which were most occuring and were significant or absolutely unncessary for text categorization. Obtaing list of words with their occurences in document there could be selected which can be used in BOW and which can be used for preprocessing as a hint.
 
 \subsection{Class loadstone.api.classification.NaiveClassifier}
+\label{naive_classifier}
 This class is implementing naive classification basing on descriptions from NACE\_Categories class using Classifier interface. It analyzes if data model name contains word which is included in particular category description. If data model name contains two or more words from distinct categories descriptions both of them are returned as possible categories to be assigned. This class is basing only on heuristic of NACE\_Categories descriptions so can be used for any data source but categorization correctness may differ significantly on data source.
 
 \subsection{Class loadstone.api.classification.loadstone.LoadstoneSemiSupervisedClassifier}
