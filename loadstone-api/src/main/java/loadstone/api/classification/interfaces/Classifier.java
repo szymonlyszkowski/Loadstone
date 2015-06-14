@@ -4,6 +4,7 @@ package loadstone.api.classification.interfaces;/**
  */
 
 import loadstone.model.DataModel;
+import loadstone.model.poi.categories.NACE_Categories;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ import java.util.List;
  * @author Szymon.Lyszkowski@tomtom.com on 31.05.15.
  */
 public interface Classifier {
-    public List classify(DataModel model);
+    public List<NACE_Categories> classify(DataModel model);
 }

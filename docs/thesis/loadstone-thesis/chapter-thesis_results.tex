@@ -1,0 +1,33 @@
+\chapter{Thesis results}
+
+\section{Overview}
+The main purpose of this thesis is to obtain categorization system for POIs. Such task is complex and difficult to execute for complex data which are present in modern word. It is very difficult to obtain desired results for each kind of data. Text processing is wide domain and requires a lot of computing power and time to return results which are readable for human. When some heuristics is applied processing effort can be decreased in both fileds of execution time and required computing power. As mentioned in previous chapters there are many methods which enable method categorization. What is more every method is aimed for different kind of input data. This can indicate that initial knowledge about input data is absolutely compulsory to achieve desired effect and effectiveness. In this chapter the results obtained from implemented information system will be presented for delivered source of data which is loadstone database.
+
+\section{Preprocessing results}
+Preprocessing is a task which does not involve high level of complexity in text analysis. It is very important to consider all combinations of \textit{\textbf{field separators}}(this therm denotes sign of space between analyzed words). Usually it is \textit{space} sign but not always. As already mentioned this may vary among input data and such signs could be \textit{tab key} or \textit{\_} sign. The best idea to apply text preprocessing is to collect statistics which would give information which phrases could be easily applied on data without any regression and conflicts on results. In case of loadstone database special bash script was prepared which is described in chapter section: \ref{analyze_db}. Results of this script gave heuristics which could be applied for preprocessing. Phrases which can be rejected from analyzed text without any bothering about categorization corectness are as follows:
+\newline
+\begin{itemize}
+	\item \textbf{\textit{"ul"}}
+	\item \textbf{\textit{"adres"}}
+	\item \textbf{\textit{"."}}
+\end{itemize}
+There is a test suite in \textit{loadstone.api.classification.loadstone.LoadstonePreprocessingTest} class which presents execution of preprocessing on specially prepared DataModel's for this purpose. Results for analyzed texts with those paricular patterns to be rejected from input text are as follows:
+
+\begin{algorithm}[h]
+	\KwData{\textit{\textbf{"adres ul ul. fake name to be trimmed "}}}
+	\KwResult{\textit{\textbf{"fake name to be trimmed"}}}
+\end{algorithm}
+This example shows that phrases: \textit{"adres ul ul. " and " "} were succefully rejected and there is significantly less data to analyze in further categorization process.
+\newline
+Another example is taken directly from loadstone database. Preprocessed text is an loadstone database entry.
+\begin{algorithm}[h]
+	\KwData{\textit{\textbf{"adres ul. kramarska 15 warszawa rembertów"}}}
+	\KwResult{\textit{\textbf{"kramarska 15 warszawa rembertów"}}}
+\end{algorithm}
+As it is noticable also in this case preprocessing was successfull and did not rejected any data important from categorization point of view. Phrase: \textit{"adres ul. "} was trimmed correctly.
+ 
+  
+\section{Classification results}
+
+\subsection{Naive classifier categorization results}
+\subsection{Semisupervised categorization for loadstone database results}
