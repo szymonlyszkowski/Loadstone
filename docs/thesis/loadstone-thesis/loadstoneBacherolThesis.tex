@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,onecolumn,titlepage]{report}
+\documentclass[12pt,a4paper,onecolumn,twoside]{report}
 %when apply twoside next page moves to left
 \usepackage{geometry}
 \geometry{
@@ -45,19 +45,10 @@
 \author{Szymon Łyszkowski}
 
 \begin{document}
-\maketitle
 
-\textbf{
-		\\Faculty of Technical Physics, Information Technology and Applied \\Mathematics
-		\\Thesis supervisor: Piotr Skulimowski, PhD
-		\\Graduate student: Szymon Łyszkowski
-		\\Index number: 171132
-		\\Programme: Information Technology
-	}
-
-
+\include{chapter-abstracteng}
+\include{chapter-abstractpl}
 \tableofcontents
-
 \include{chapter-introduction}
 \include{chapter-categorization_methods}
 \include{chapter-loadstone_database}

@@ -29,7 +29,7 @@ API is divided into three packages: \textit{connection, classification} and \tex
  	\caption{Loadstone API packages organization}
  	\label{fig:@=packages_oragnization}
 \end{figure}
-\subsection{Interface \newline loadstone.api.classification.interfaces.AbstractResourcePreprocessing}
+\subsection{Interface \newline loadstone.api.classification.interfaces.\newline AbstractResourcePreprocessing}
 As mentioned before independence of input data is absolutely compulsory for API. To define preprocessing for each different kind of data source  AbstractResourcePreprocessing interface was defined. Classes which will be strictly delegated to preprocess particular source of data by implementation of this interface will be able to communicate with API and pass already preprocessed data for further classification methods.Interface also relies on model object data (DataModel) which is defined in another module of the project - \textbf{loadstone-model}. This assures for uniform and scalable solution for next data resources. AbstractResourcePreprocessing defines two methods which has to be implemented by data source dedicated classes to use categorization methods. Interface organization is depicted in the figure \ref{fig:@=AbstractResourcePreprocessing}:
 \begin{figure}[h]
 	\centering
@@ -45,7 +45,7 @@ This interface is devoted for classes implementing classification functionalites
 	\caption{Interface Classifier UML Diagram}
 	\label{fig:@=classifier}
 \end{figure}
-\subsection{Interface loadstone.api.connection.interfaces.AbstractResourceConnection}
+\subsection{Interface \newline loadstone.api.connection.interfaces.AbstractResourceConnection}
 Interface to uniform the input point for data source to API. Each new data source should implement its own class for data gathering and return it in a way interface indicate it. Then data from any other resource (e.g. loadstone database, RESTful API) can be delivered for categorization functionalities. AbstractResourceConnection is simillar to AbstractResourcePreprocessing because of imposing data delivery in term of data model single object and its collection. Interface organization is depicted in the figure \ref{fig:@=connection}   
 \begin{figure}[h]
 	\centering
@@ -54,7 +54,7 @@ Interface to uniform the input point for data source to API. Each new data sourc
 	\label{fig:@=connection}
 \end{figure}
 Parameters for interface are respectively: List of Strings and String. Parameter types should be sufficient for particular data source invocation composition (e.g SQL statment). Using String type give user big flexibility if we are considering java as programming language.
-\subsection{Class loadstone.api.classification.loadstone.LoadstonePreprocessing}
+\subsection{Class \newline loadstone.api.classification.loadstone.\newline LoadstonePreprocessing}
 This class is deliberately delegated to preprocess data obtained from \textit{Loadstone} database. Using dedicated interface it assures final user about possibility of preprocesssing in easy to use and in the same time customized way. Class architecture is shown on \ref{fig:@=LoadstonePreprocessing}
 \begin{figure}[h]
 	\centering
@@ -63,7 +63,7 @@ This class is deliberately delegated to preprocess data obtained from \textit{Lo
 	\label{fig:@=LoadstonePreprocessing}
 \end{figure}
 Class organization is simple. For preprocessing functionality is responsible private method used in methods implementation of AbstractResourcePreprocessing interface. It simply process given input - rejects spaces (default behaviour) and patterns defined by user in constructor. Method is applied for single object DataModel or collection of such objects in corresponding interface methods.
-\subsection{Class loadstone.api.classification.loadstone.LoadstoneBOW}
+\subsection{Class \newline loadstone.api.classification.loadstone.LoadstoneBOW}
 \label{loadstone_bow}
 This class is a feature for semi-supervised classification. It is basically a hashmap which values are sections of NACE categorization system and keys are strings which were the most frequenait occuring in loadstone database and assigned empirically to particular category. This class avails user to travers through map and check if category can be assigned immediately. 
 \subsubsection{Bash script analyzeDB.sh}
@@ -88,23 +88,23 @@ Frequency for bag of words was prepared using bash shell script using awk tool w
 
 Basing on Algorithm \ref{alg:analyze_freuency} it was possible to easily define those phrases which were most occuring and were significant or absolutely unncessary for text categorization. Obtaing list of words with their occurences in document there could be selected which can be used in BOW and which can be used for preprocessing as a hint.
 
-\subsection{Class loadstone.api.classification.NaiveClassifier}
+\subsection{Class \newline loadstone.api.classification.NaiveClassifier}
 \label{naive_classifier}
 This class is implementing naive classification basing on descriptions from NACE\_Categories class using Classifier interface. It analyzes if data model name contains word which is included in particular category description. If data model name contains two or more words from distinct categories descriptions both of them are returned as possible categories to be assigned. This class is basing only on heuristic of NACE\_Categories descriptions so can be used for any data source but categorization correctness may differ significantly on data source.
 
-\subsection{Class loadstone.api.classification.loadstone.LoadstoneSemiSupervisedClassifier}
+\subsection{Class \newline loadstone.api.classification.loadstone.\newline LoadstoneSemiSupervisedClassifier}
 Class which enables to classify POI using class LoadstoneBOW prepared previously. This class does not include descriptions from class NACE\_Categories. Only descriptions from LoadstoneBOW are taken into consideration. This class is implementing Classifier interface so it can be fluently used later in API.
 
-\subsection{Class loadstone.api.connection.loadstone.LoadstoneDatabase}
+\subsection{Class \newline loadstone.api.connection.loadstone.LoadstoneDatabase}
 This class takes responsibility for gathering loadstone database. This class is implementing AbstractResourceConnection to get all possible entities from loadstone database. 
  
 \subsubsection{LoadstoneDatabaseUpdater Singleton Design Pattern}
 To modify data inside database loadstone.api.connection.loadstone.LoadstoneDatabaseUpdater should be used. It is using Singleton pattern to assure atomicity of operation on database. It defines static method \textit{getObjectModelSingleton()} returns static object on which user can work to modify data. Such approach allows for data correctness without bothering some other object is using database.  
 
-\subsection{Class loadstone.api.utils.LodstoneAPIUtils}
+\subsection{Class loadstone.api.utils.LoadstoneAPIUtils}
 This class is just utility for user to construct appropriate SQL query to loadstone database. This utility only expect from user to input patterns which are supposed to be included during search for expected tuples in database. 
 
-\subsection{loadstone.api.CategorizationAPI}
+\subsection{Class loadstone.api.CategorizationAPI}
 Class which can be enabled for final usage by user. It combines all methods of preprocessing, data source connection and classification methods. Should be used as input point for data considered to be classified and methods used for classification. Optionally user can add preprocessing method if step of this kind may be useful when POI classification is done.
 
 \begin{figure}[h]
