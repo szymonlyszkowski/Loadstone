@@ -1,7 +1,7 @@
 \chapter{Loadstone SQLite Database}\label{chap.loadstone}
 
 \section{Overview}
-Problem of POI categorization comes for many data sources. One of them is database which is used in legacy Symbian applications which are used by blind people. Such applications are difficult to migrate fluently to newer platforms used in high-tech smartphones e.g iOS or Android. Such data are organized in difficult to analyze text files. Examplary database files can be found on Loadstone project website: \url{http://gps.zlotowicz.pl}. The purpose of this thesis was to prepare ready to use source data for Java-based platform Android. Such approach allows programmer to easily invoke java methods delivering source data in convenient way.
+Problem of POI categorization comes for many data sources. One of them is database which is used in legacy Symbian applications which are used by blind people. Such applications are difficult to migrate fluently to newer platforms used in high-tech smartphones e.g. iOS or Android. Such data are organized in difficult to analyze text files. Examplary database files can be found on Loadstone project website. \cite{29} The purpose of this thesis was to prepare ready to use source data for Java-based platform Android. Such approach allows programmer to easily invoke java methods delivering source data in convenient way.
 
 \section{SQLite Database}
 SQLite is a RDBMS\footnote{Relational Data Base Management System} released on Public Domain license. SQLite avails using SQL queries and flexible APIs, inter alia Java. Is widely used in embedded systems, internet browsers. SQLite is widely used as an embedded part of system so it was the most suitable choice for purpose of this thesis.
@@ -40,7 +40,7 @@ createDB.sh /directory/to/txt/file/cala_polska.txt dataBaseNameWithoutExtention
 To invoke script properly obviousy sqlite3 has to be installed on processing machine. 
 
 \subsection{Usage in Java Project}
-Resultant SQLite database obtained from bash shell script can be applied as a part of java project. It is one file which size is limited to 140 TB (according to SQLite standard). File applied in project is 263 MB. To obtain easy to apply for human communication with database inside java programming language additional java SQLite Database Model library was imported into project\footnote{\url{http://www.neilson.co.za/sqlite-database-model/}}. This library presents fully ORM\footnote{Object Relational Mapping}-based approach which is very intuitve for java programmers. Such approach relieve programmers from SQL\footnote{Structured Query Language} query knowledge. It delivers nice to read and use data methods e.g.
+Resultant SQLite database obtained from bash shell script can be applied as a part of java project. It is one file which size is limited to 140 TB (according to SQLite standard). File applied in project is 263 MB. To obtain easy to apply for human communication with database inside java programming language additional java SQLite Database Model library was imported into project. \cite{31} This library presents fully ORM\footnote{Object Relational Mapping}-based approach which is very intuitve for java programmers. Such approach relieve programmers from SQL\footnote{Structured Query Language} query knowledge. It delivers nice to read and use data methods e.g.
 \begin{lstlisting}[style=JAVA]
 database.getObjectModelColumns()[0].getName()
 // returns name of first column in SQLite database

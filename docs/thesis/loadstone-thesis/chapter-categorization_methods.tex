@@ -5,8 +5,8 @@ Plain text is the most friendly and convenient in use for human beings as a data
 	\item Preprocessing - text analysis paying special attention to reject unnecessary phrases which would slow down categorizarion process.
 	\item Feature Extraction - text analysis which can consider wide range of text. Useful especially to analyze human text input (internet forum comment and entries). Uses TF-IDF\footnote{Term Frequency-Inverse Document Frequency} method. The result is heuristic for further text analysis.
 	\item Naive Bayesian Classifier - method enabling direct text classification to appropriate category/phrase. It requires initial knowledge (heuristics) about given input.
-	\item SVM\footnote{Support Vector Machine} - a form of binary classification. It divides input to two different separable domains. In order to classify for particular domain one-to-one comparison is applied.
-	\item VSM \footnote{Vector Space Model} - method of text indexing and weight measuring. Already weighted indices are easier to give a hint for human which document to query. In the last stage measures text content simillarity according to given query - \textit{Centroid Classifier}.
+	\item Support Vector Machine\footnote{SVM} - a form of binary classification. It divides input to two different separable domains. In order to classify for particular domain one-to-one comparison is applied.
+	\item Vector Space Model\footnote{VSM} - method of text indexing and weight measuring. Already weighted indices are easier to give a hint for human which document to query. In the last stage measures text content simillarity according to given query - \textit{Centroid Classifier}.
 	       
 \end{itemize}
 
@@ -127,7 +127,7 @@ subjected to:
 The most important factor about SVM is its dependance only on the input data inner products.\cite{6} When cannot clearly separate data it is possible to transform them to higher order space $\theta$ where separation is possible. It implies we apply $\theta(x_i) \times \theta(x_j)$ for data from equation (2.11). Fortunately $\theta(x_i) \times \theta(x_j)$ is equivalent to kernel $K(x_i,x_y)$. Such substitution allows to ommit computing higher order space. Kernel can be chosen from many various kernel functions e.g. polynomial. \cite{svm_wiki}
 
 \section{VSM and Centroid Classifier}
-In VSM we assume that each document $d$ is represented as a term-space vector and each term is obtained using TFIDF. Having prepared all terms in vector, centroid classifier can be computed for every class $c_i$\cite{8}.
+In VSM we assume that each document $d$ is represented as a term-space vector and each term is obtained using TF-IDF. Having prepared all terms in vector, centroid classifier can be computed for every class $c_i$\cite{8}.
 \newline First step is to calculate document vectors for every class $c_i$:
 \begin{equation}
 SUM_{c_i} = \sum_{d\in c_i}d

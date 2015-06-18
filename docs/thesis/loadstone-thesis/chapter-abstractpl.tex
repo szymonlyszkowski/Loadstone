@@ -1,6 +1,14 @@
 \renewcommand{\abstractname}{Streszczenie}
 \begin{abstract}
 \begin{otherlanguage}{polish}
-POLSKI ABSTRACT
+Niniejsza praca inżynierska porusza problem kategoryzacji punktów użytecznych (POI). Tematyka pracy obejmuje bardzo szerokie zagadnienie, które w miarę inwestygacji staje się coraz bardziej skomplikowane i może poruszać wiele innych tematów nie bezpośrednio związanych z tematyką kategoryzacji POI.
+
+Podczas procesu tworzenia pracy został przeprowadzony przegląd metod kategoryzacji tekstu, które mogą być wykorzystane podczas kategoryzacji POI. Jako część praktyczna został zaprojektowany i zaimplmentowany system informatyczny dostarczający funkcjonalność kategoryzacji POI. System jest dostarczony w formie biblioteki napisanej w języku programowania java, która może zostać użyta przez programistę w dowolnej aplikacji java. Może być to aplikacja mobilna (android) jak również desktopowa. Użytkowanie biblioteki jest bardzo proste, wystarczy jedynie dodać bibliotekę (plik .jar) do projektu java w zintegrowanym środowisku programistycznym (IDE).
+
+Częścią biblioteki jest baza danych \textit{loadstone}, która została stworzona na podstawie plików tekstowych dostępnych na stronie. \cite{29} Uzyskane pliki posłużyły do stworzenia bazy danych \textit{SQLite}, która ułatwiła pracę z danymi w bibliotece java. Baza danych została stworzona za pomocą skryptu napisanego w języku \textit{bash} powłoki systemowej UNIX napisanego specjalnie w tym celu. Biblioteka java dostarcza zestawu metod, które umożliwiają programiście dostęp do bazy danych w pełni obiektowy sposób. Takie podejście zwalnia programistę użytkującego bibliotekę ze znajomości języka \textit{SQL}. 
+
+Praca zawiera również opis funkcjonalności klas biblioteki oraz prezentuje architekturę biblioteki wraz z diagramem UML. Jako rezultat pracy zostały przedstawione wyniki kategoryzacji pod kątem poprawności oraz efektywności.
+
+Bibloteka używa narzędzia \textit{maven}, które ułatwia zarządzanie zależnościami występującymi w projekcie oraz jest asystentem budowania. Jako system kontroli wersji został użyty program \textit{Git} a repozytorium kodu źródłowego jest dostępne na stronie internetowej. \cite{30}   
 \end{otherlanguage}
 \end{abstract}
