@@ -11,3 +11,4 @@ cat $1 | awk '
               printf("%3d %s\n", words[w], w)
      } ' | sort -n
 
+trap times EXIT

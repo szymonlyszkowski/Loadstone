@@ -104,5 +104,88 @@ In comparison to algorithm \ref{alg:3rd} obtained result is completely irrelevan
 \newline 
 \textit{Note: all examples are implemented as test suite of unit tests in class \newline loadstone.api.classification.LoadstoneSemiSupervisedClassifierTest}
 
+\subsubsection{Database analysis results}
+In order to construct suitable semisupervised categorization there was performed database analysis. Analysis was done using \textit{bash} shell script \textbf{analyzeDB.sh}. Script enables whole database analysis. The result of such analysis is number occurences of pharases separated by whitespace. During script execution there was processed \textbf{37549} different phrases. Execution of the script took: \textbf{2.937 sec.} Results of twenty most frequent phrases are depicted in tables \ref{tab1} and \ref{tab2}.\begin{table}[H]
+	\begin{tabular}{ | l | l |}
+		\hline
+		Occurences & Phrase\tabularnewline \hline
+		98378 & ul.	\\
+		11153 & "wysokość\\
+		11117 & "bankomat\\
+		9105  & "parking\\
+		8914  & "kościół\\
+		7517  & i\\
+		6999  & "kurier\\
+		6959  & pgp\\
+		6691  & 1 \\
+		6072  & 24h\\
+		5569  & "szkoła\\		
+		\hline
+	\end{tabular}
+	\label{tab1}
+	\caption{Descending phrase occurence frequencies 1}
+\end{table}
+\begin{table}[H]
+	\begin{tabular}{ | l | l |}
+		\hline
+		Occurences & Phrase\\ \hline		
+		5321 & atm\\
+		4907 & "benzyna\\		
+		4749 & "góra\\		
+		4705 & oddział\\		
+		4637 & 2\\		
+		4438 & aleja\\		
+		4414 &"cmentarz\\		
+		4102 &"supermarket\\	
+		4052 & św.\\
+		3830 & 3\\		
+		\hline
+	\end{tabular}
+	\label{tab2}
+	\caption{Descending phrase occurence frequencies 2}
+\end{table}Obviously not all of them were included in bag of words for semisupervised classification. All words with adjusted category were chosen empirically. In total to loadstone bag of words there was included \textbf{72} words.
+\section{Performance results}
+Performance was measured for one hundred iterations of classification method invokes. Additionally to assure results correctness five iterations were added at the beginning as a warmup. During performance measurement time of data access to database was discarded. Performance results only reveal time of implemented classification and preprocessing methods.
+\begin{itemize}
+	\item Preprocessing performance results are presented in table \ref{tabPreprocessing}. 
+	\begin{table}
+	\begin{tabular}{ | l | l | l | l |}
+		\hline
+		Operation & Time & Error & Unit\\ \hline		
+		\textbf{Algorithm \ref{alg:1st}} & 0,003 & 0,001 & ms/op \\
+		\textbf{Algorithm \ref{alg:2nd}} & 0,002 & 0,001 & ms/op \\		
+		\hline
+	\end{tabular}
+	\label{tabPreprocessing}
+	\caption{Preprocessing perfromance results}
+	\end{table}
+	\item Naive classifier performance results are presented in table \ref{tabNaive}.
+	\begin{table}
+	\begin{tabular}{ | l | l | l | l |}
+		\hline
+		Operation & Time & Error & Unit\\ \hline		
+		\textbf{Algorithm \ref{alg:3rd}} & 0,004 &  0,001 & ms/op \\
+		\textbf{Algorithm \ref{alg:4th}} & 0,003 &  0,001 & ms/op \\
+		\textbf{Algorithm \ref{alg:5th}} & 0,007 &  0,001 & ms/op \\
+		\hline
+	\end{tabular}
+	\label{tabNaive}
+	\caption{Naive classifier performance results}
+\end{table}
+	\item Semisupervised categorization results are presented in table \ref{tabSemi}.
+		\begin{table}
+			\begin{tabular}{ | l | l | l | l |}
+				\hline
+				Operation & Time & Error & Unit\\ \hline		
+				\textbf{Algorithm \ref{alg:6th}} & 0,001 &  0,001 & ms/op \\
+				\textbf{Algorithm \ref{alg:7th}} & 0,002 &  0,001 & ms/op \\
+				\textbf{Algorithm \ref{alg:8th}} & 0,003 &  0,001 & ms/op \\
+					\hline
+				\end{tabular}
+				\label{tabSemi}
+				\caption{Semi-supervised categorization performance results}
+			\end{table}
+\end{itemize}
+As performance results states the worst case scenario is when there is applied categorization method which is not intended for given kind of data (algorithm \ref{alg:5th}). The rest of results are on quite same level and does not cost much. Even worst case scenario is quite cheap solution for modern mobile devices and computers as all results are expressed in milliseconds. The biggest concern during consideration of presented test cases should be I/O time operation. This factor was not included as it was not purpose of this thesis. On the other hand when considering functionality and performance of whole infromation system this factor requires futher investigation.    
 \section{Conclusion}
-The purpose of this thesis was to provide overview of categorization methods using text analysis which can be useful during POI classification. As a result of this research there was developed loadstone database (using script \textit{createDB.sh}) java library which delivers interface for \textit{loadstone} database access and provides categorization methods mainly suit for data included in database. Such customization was possible thanks to automatic analysis of phrase frequencies in database which functionality enables script \textit{analyzeDB.sh}. Library can be useful when developing applications using GPS systems to deliver information about POI in the neighbourhood. Main benefit of library is independence on data source so using specially designed interface there is possibility to delived many kind of data sources and combine it one application. The topic of POI categorization is wide and complex domain. This domain mainly involves text processing and heuristics about possible hints which can be used to obtain expected results. As presented in chapter section \ref{classification_results} result may differ according to applied categorization method. A lot of factors need to be considered when categorization task is applied like: language of input data, model of input data (it is possible to analyze whole documents or large fragment of texts or ready to use databases), size of input data (performance in complex infromation systems is one of significant factor). It is really difficult challange to estimate what kind heuristics data can be obtained and work out system which would be versatile for every data source. Another important factor is choice of technology for such information system. Java possess high native library support and community as well \cite{24} \cite{25}. Unfortunately this involves a lot of reasearch in internet to find suitable collection which can be used in implementation. What is more it is often practice that code construction is getting more complex and difficult to maintain in future. Example of such practice is returning classification result as \textit{list of categories} instead of using construction called \textit{tuple}. Such constructions are available in programming languages like: \textbf{Scala} \cite{26} or \textbf{Python} \cite{27}. What is more syntax of those programming languages is easier to read (it is possible to ommit longline java syntax - not so huge effort is pushed on object encapsulation) and flexibility. Another important issue are external tools which could be used for easier maintenance of infromation system. Such tool could be \textit{Apache Spark} \cite{28}. It increases the perfromance of execution and is great manager for feature extraction, transformations or SVM. On the other hand this technology is quite new and requires significant effort at the beginning to use it.     
+The purpose of this thesis was to provide overview of categorization methods using text analysis which can be useful during POI classification. As a result of this research there was developed loadstone database (using script \textit{createDB.sh}), java library which delivers interface for \textit{loadstone} database access and provides categorization methods mainly customized for data included in database. Such customization was possible thanks to automatic analysis of phrase frequencies in database which functionality enables script \textit{analyzeDB.sh}. Library can be useful when developing applications using GPS systems to deliver information about POI in the neighbourhood. Main benefit of library is independence on data source so using specially designed interface there is possibility to deliver many kind of data sources and combine it in one application. The topic of POI categorization is wide and complex domain. This domain mainly involves text processing and heuristics about possible hints which can be used to obtain expected results. As presented in chapter section \ref{classification_results} result may differ according to applied categorization method. A lot of factors need to be considered when categorization task is applied like: language of input data, model of input data (it is possible to analyze whole documents or large fragment of texts or ready to use databases), size of input data (performance in complex infromation systems is one of significant factor). It is really difficult challange to estimate what kind heuristics data can be obtained and work out system which would be versatile for every data source. Another important factor is choice of technology for such information system. Java possess high native library support and community as well \cite{24} \cite{25}. Unfortunately this involves a lot of reasearch in internet to find suitable collection which can be used in implementation. What is more it is often practice that code construction is getting more complex and difficult to maintain in future. Example of such practice is returning classification result as \textit{list of categories} instead of using construction called \textit{tuple}. Such constructions are available in programming languages like: \textbf{Scala} \cite{26} or \textbf{Python} \cite{27}. What is more syntax of those programming languages is easier to read (it is possible to ommit longline java syntax - not so huge effort is pushed on object encapsulation) and flexibility. Another important issue are external tools which could be used for easier maintenance of infromation system. Such tool could be \textit{Apache Spark} \cite{28}. It increases the perfromance of execution and is great manager for feature extraction, transformations or SVM. On the other hand this technology is quite new and requires significant effort at the beginning to use it.     
