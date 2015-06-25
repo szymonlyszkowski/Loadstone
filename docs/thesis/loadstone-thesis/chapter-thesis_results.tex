@@ -1,15 +1,15 @@
 \chapter{Thesis results}
 
 \section{Overview}
-The main purpose of this thesis is to obtain categorization system for POIs. Such task is complex and difficult to execute for complex data which are present in modern word. It is very difficult to obtain desired results for each kind of data. Text processing is wide domain and requires a lot of computing power and time to return results which are readable for human. When some heuristics is applied processing effort can be decreased in both fileds of execution time and required computing power. As mentioned in previous chapters there are many methods which enable method categorization. What is more every method is aimed for different kind of input data. This can indicate that initial knowledge about input data is absolutely compulsory to achieve desired effect and effectiveness. In this chapter the results obtained from implemented information system will be presented for delivered source of data which is loadstone database.
+The main purpose of this thesis is to obtain categorization system for POIs. Such task is complex and difficult to execute for complex data which are present in modern word. It is very difficult to obtain desired results for each kind of data. Text processing is wide domain and requires a lot of computing power and time to return results which are readable for human. When some heuristics is applied processing effort can be decreased in both fields of execution time and required computing power. As mentioned in previous chapters there are many methods which enable method categorization. What is more every method is aimed for different kind of input data. This can indicate that initial knowledge about input data is absolutely compulsory to achieve desired effect and effectiveness. In this chapter the results obtained from implemented information system will be presented for delivered source of data which is Loadstone database.
 
-\section{Customized semisupervised classification for Loadstone database}
+\section{Customized semi-supervised classification for Loadstone database}
 \label{analyze_db}
-Frequency for bag of words was prepared using bash shell script using awk tool which is great utility for text analysis \cite{21}. Script traverses through the loadstone database text file and counts occurrence of each word which exists in document. Algorithm can be expressed in following way:
+Frequency for bag of words was prepared using bash shell script using \textit{awk} tool which is great utility for text analysis \cite{21}. Script traverses through the Loadstone database text file and counts occurrence of each word which exists in document. Algorithm can be expressed in following way:
 \begin{algorithm}[h]
-	\KwData{All words existing in loadstone database text file}
+	\KwData{All words existing in Loadstone database text file}
 	\KwResult{Number of occurrences for each word}
-	initalize array \textbf{words[]};
+	initialize array \textbf{words[]};
 	\newline
 	\ForEach{ \textit{word} in text file}
 	{
@@ -27,7 +27,7 @@ Frequency for bag of words was prepared using bash shell script using awk tool w
 Basing on Algorithm \ref{alg:analyze_freuency} it was possible to easily define those phrases which were most occurring and were significant or absolutely unnecessary for text categorization. Obtaining list of words with their occurrences in document there could be selected which can be used in BOW and which can be used for preprocessing as a hint.
 
 \section{Preprocessing results}
-Preprocessing is a task which does not involve high level of complexity in text analysis. It is very important to consider all combinations of \textit{\textbf{field separators}}(this therm denotes sign of space between analyzed words). Usually it is \textit{space} sign but not always. As already mentioned this may vary among input data and such signs could be \textit{tab key} or \textit{\_} sign. The best idea to apply text preprocessing is to collect statistics which would give information which phrases could be easily applied on data without any regression and conflicts on results. In case of loadstone database special bash script was prepared which is described in chapter section: \ref{analyze_db}. Results of this script gave heuristics which could be applied for preprocessing.
+Preprocessing is a task which does not involve high level of complexity in text analysis. It is very important to consider all combinations of \textit{\textbf{field separators}}(this therm denotes sign of space between analysed words). Usually it is \textit{space} sign but not always. As already mentioned this may vary among input data and such signs could be \textit{tab key} or \textit{\_} sign. The best idea to apply text preprocessing is to collect statistics which would give information which phrases could be easily applied on data without any regression and conflicts on results. In case of Loadstone database special bash script was prepared which is described in chapter section: \ref{analyze_db}. Results of this script gave heuristics which could be applied for preprocessing.
 Phrases which can be rejected from analysed text without any bothering about categorization correctness are as follows:
 \newline
 \begin{itemize}
@@ -35,7 +35,7 @@ Phrases which can be rejected from analysed text without any bothering about cat
 	\item \textbf{\textit{"adres"}}
 	\item \textbf{\textit{"."}}
 \end{itemize}
-Phrase \textit{"ul"} occurred respectively \textbf{98378} table \ref{tab1} \textbf{872770} table \ref{tab2} - the most frequently and does not say about any category. Phrase \textit{"."} is a dot so definitely does not have any significant influence on categorization result. Moreover such removal will ease future categorization. Phrase \textit{"adres"} occurred \textbf{759337} table \ref{tab2}. This number was obtained from text file containing all data available for loadstone project. There is a test suite in \textit{loadstone.api.classification.loadstone.LoadstonePreprocessingTest} class which presents execution of preprocessing on specially prepared DataModel's for this purpose. Results for analysed texts with those particular patterns to be rejected from input text are as follows:
+Phrase \textit{"ul"} occurred respectively \textbf{98378} table \ref{tab1} \textbf{872770} table \ref{tab2} - the most frequently and does not say about any category. Phrase \textit{"."} is a dot so definitely does not have any significant influence on categorization result. Moreover such removal will ease future categorization. Phrase \textit{"adres"} occurred \textbf{759337} table \ref{tab2}. This number was obtained from text file containing all data available for Loadstone project. There is a test suite in \textit{loadstone.api.classification.loadstone.LoadstonePreprocessingTest} class which presents execution of preprocessing on specially prepared DataModel's for this purpose. Results for analysed texts with those particular patterns to be rejected from input text are as follows:
 
 \begin{algorithm}
 	\SetAlgorithmName{Example}{}
@@ -49,14 +49,14 @@ Phrase \textit{"ul"} occurred respectively \textbf{98378} table \ref{tab1} \text
 
 This example shows that phrases: \textit{"adres ul ul. " and " "} were successfully rejected and there is significantly less data to analyse in further categorization process.
 \newline
-Another example is taken directly from loadstone database. Preprocessed text is an loadstone database entry.
+Another example is taken directly from Loadstone database. Preprocessed text is an Loadstone database entry.
 \begin{algorithm}
 	\SetAlgorithmName{Example}{}
 	
 	\KwData{\textit{\textbf{"adres ul. kramarska 15 warszawa rembertów"}}}
 	\KwResult{\textit{\textbf{"kramarska 15 warszawa rembertów"}}}
 	\hfill \break
-	\caption{Preprocessing example using data extracted from loadstone database}
+	\caption{Preprocessing example using data extracted from Loadstone database}
 	\label{alg:2nd}
 \end{algorithm}
 \newline
@@ -83,7 +83,7 @@ As mentioned in chapter section: \ref{naive_classifier} naive classification bas
 \newline
 As heuristic \textbf{\textit{"Manufacturing"}} frequency was higher than \textbf{\textit{"administration"}} (six occurrences versus three occurrences) category C is returned as result for categorization system.
 \newline
-Another example demonstrate naive classification when heuristic frequency has the same value of occurences for each component:
+Another example demonstrate naive classification when heuristic frequency has the same value of occurrences for each component:
 \begin{algorithm}
 	\SetAlgorithmName{Example}{}
 	
@@ -96,24 +96,24 @@ Another example demonstrate naive classification when heuristic frequency has th
 \newline  
 As heuristic \textbf{\textit{"Manufacturing"}} frequency was the same as heuristic \textbf{\textit{"administration"}} category C and O is returned as result for categorization system.
 
-\subsubsection{Naive classifier for loadstone database}
+\subsubsection{Naive classifier for Loadstone database}
 
-As heuristic is suit to data which are definitely not included in loadstone database input data description (main issue comparison between English and polish language) naive classifier does not have significant utility during loadstone database analysis. Algorithm \ref{alg:6th} proves it:
+As heuristic is suit to data which are definitely not included in Loadstone database input data description (main issue comparison between English and polish language) naive classifier does not have significant utility during Loadstone database analysis. Example \ref{alg:6th} proves it:
 \begin{algorithm}
 	\SetAlgorithmName{Example}{}
 	
 	\KwData{\textit{\textbf{"bankomat i oddział bz bwk atm 24h bank ul. jana pawła ii 12 sieradz"}}}
 	\KwResult{\textit{\textbf{"Not classified"}}}
 	\hfill \break
-	\caption{Naive classifier using data extracted from loadstone database}
+	\caption{Naive classifier using data extracted from Loadstone database}
 	\label{alg:5th}
 \end{algorithm}
 \newline  
 As none heuristic exists in input data from NACE categories description "Not classified" result is returned.
 \newline
 \textit{Note: all examples are implemented as test suite of unit tests in class\newline loadstone.api.classification.NaiveClassifierTest}    
-\subsection{Semisupervised categorization for loadstone database results}
-Semisupervised categorization is very useful but requires much more complex analysis. It requires knowledge about heuristics included in input data. To perform semisupervised categorization loadstone bag of words was prepared previously (description chapter section: \ref{loadstone_bow}). Thanks to initial knowledge what kind of phrases could be used for categorization, results correctness is decent. Important factor is complete isolation from heuristics included in NACE standard category description (such approach could possibly introduce regression) Following examples demonstrates performance of semisupervised categorization intended deliberately for input data derived from loadstone database:
+\subsection{Semisupervised categorization for Loadstone database results}
+Semisupervised categorization is very useful but requires much more complex analysis. It requires knowledge about heuristics included in input data. To perform semi-supervised categorization Loadstone bag of words was prepared previously (description chapter section: \ref{loadstone_bow}). Thanks to initial knowledge what kind of phrases could be used for categorization, results correctness is decent. Important factor is complete isolation from heuristics included in NACE standard category description (such approach could possibly introduce regression). Following examples demonstrates performance of semi-supervised categorization intended deliberately for input data derived from Loadstone database:
 \newline
 \begin{algorithm}[h]
 	\SetAlgorithmName{Example}{}
@@ -121,11 +121,11 @@ Semisupervised categorization is very useful but requires much more complex anal
 	\KwData{\textit{\textbf{"bankomat i oddział bz bwk atm 24h bank ul. jana pawła ii 12 sieradz"}}}
 	\KwResult{\textit{\textbf{"K - Financial and insurance activities "}}}
 	\hfill \break
-	\caption{Semisupervised categorization using data extracted from loadstone database}
+	\caption{Semi-supervised categorization using data extracted from Loadstone database}
 	\label{alg:6th}
 \end{algorithm}
 \newline
-Because of heuristics: \textbf{\textit{bankomat, atm, bank}} which are defined in loadstone BOW are all assigned to category K unamigious result is retrieved. This sample clearly demonstrates difference between naive (algorithm: \ref{alg:5th}) and semisupervised classification.
+Because of heuristics: \textbf{\textit{bankomat, atm, bank}} which are defined in Loadstone BOW are all assigned to category K unambiguous result is retrieved. This sample clearly demonstrates difference between naive (example: \ref{alg:5th}) and semi-supervised classification. Naive classification is basing on heuristic taken from description of NACE categories table: \ref{tab:NaceMatching}. Input data were in completely different (Polish language) than heuristic (English language). Possible improvement for this case could be NACE categories description to Polish language.  
 \newline
 \begin{algorithm}[h]
 	\SetAlgorithmName{Example}{}
@@ -133,31 +133,32 @@ Because of heuristics: \textbf{\textit{bankomat, atm, bank}} which are defined i
 	\KwData{\textit{\textbf{"bankomat and pizza"}}}
 	\KwResult{\textit{\textbf{"I - Accommodation and food service activities ", "K - Financial and insurance activities "}}}
 	\hfill \break
-	\caption{Semisupervised categorization using mocked data with uniform phrase frequency}
+	\caption{Semi-supervised categorization using mocked data with uniform phrase frequency}
 	\label{alg:7th}
 \end{algorithm}
 \newline
-Because of heuristics: \textbf{\textit{bankomat, pizza}} which are defined in loadstone BOW but are assigned to different categories the result is ambiguous. Heuristics frequencies are equal so two categories are returned as categorization results.
+Because of heuristics: \textbf{\textit{bankomat, pizza}} which are defined in Loadstone BOW but are assigned to different categories the result is ambiguous. Heuristics frequencies are equal so two categories are returned as categorization results.
 \newline
-There was also performed comparison of imaginary data indicated deliberately to NACE standard category description analysed by using method of semisupervised categorization. The result is as follows:
+There was also performed comparison of imaginary data indicated deliberately to NACE standard category description analysed by using method of semi-supervised categorization. The result is as follows:
 \begin{algorithm}[h]
 	\SetAlgorithmName{Example}{}
 	
 	\KwData{\textit{\textbf{"Manufacturing Manufacturing Manufacturing Manufacturing Manufacturing Manufacturing administration administration administration"}}}
 	\KwResult{\textit{\textbf{"Not classified"}}}
 	\hfill \break
-	\caption{Semisupervised categorization using mocked data not related to loadstoneBOW}
+	\caption{Semi-supervised categorization using mocked data not related to Loadstone BOW}
 	\label{alg:8th}
 \end{algorithm}
 \newline
-In comparison to algorithm \ref{alg:3rd} obtained result is completely irrelevant to reality and does not give correct result.
+In comparison to example \ref{alg:3rd} obtained result is completely irrelevant to reality and does not give correct result.
 \newline 
 \textit{Note: all examples are implemented as test suite of unit tests in class \newline loadstone.api.classification.LoadstoneSemiSupervisedClassifierTest}
 
 \subsubsection{Database analysis results}
-In order to construct suitable semisupervised categorization there was performed database analysis. Analysis was done using \textit{bash} shell script \textbf{analyzeDB.sh}. Script enables whole database analysis. The result of such analysis is number occurrences of phrases separated by whitespace. Text file analysed was:\cite{29}. During script execution there was processed \textbf{37549} different phrases. Execution of the script took: \textbf{2.937 sec.} Results of ten most frequent phrases are depicted in table \ref{tab1}.
+In order to construct suitable semi-supervised categorization there was performed database analysis. Analysis was done using \textit{bash} shell script \textbf{analyzeDB.sh}. Script enables whole database analysis. The result of such analysis is number occurrences of phrases separated by white space. Text file analysed was: \cite{29}. During script execution there was processed \textbf{37549} different phrases. Execution of the script took: \textbf{2.937 sec.} Results of ten most frequent phrases are depicted in table \ref{tab1}.
 \begin{table}[H]
-	\begin{tabular}{ | l | l |}
+	\centering
+	\begin{tabular}{ | c | c |}
 		\hline
 		Occurrences & Phrase\tabularnewline \hline
 		98378 & ul.	\\
@@ -178,7 +179,8 @@ In order to construct suitable semisupervised categorization there was performed
 \end{table}
 Results of of ten most frequent phrases occurrences for text file containing only POIs are depicted in table \ref{tab2}. Execution of the script took: \textbf{24.274sec.}
 \begin{table}[H]
-	\begin{tabular}{ | l | l |}
+	\centering
+	\begin{tabular}{ | c | c |}
 		\hline
 		Occurrences & Phrase\\ \hline		
 		872770& ul.\\
@@ -196,17 +198,18 @@ Results of of ten most frequent phrases occurrences for text file containing onl
 	\caption{Descending phrase occurrence frequencies POIs}
 	\label{tab2}
 \end{table}
-Obviously not all of them were included in bag of words for semisupervised classification. All words with adjusted category were chosen empirically. In total to loadstone bag of words there was included \textbf{72} words.
+Obviously not all of them were included in bag of words for semi-supervised classification. All words with adjusted category were chosen empirically. In total to Loadstone bag of words there was included \textbf{72} words.
 \section{Performance results}
 Performance was measured for one hundred iterations of classification method invokes. Additionally to assure results correctness five iterations were added at the beginning as a warm-up. During performance measurement time of data access to database was discarded. Performance results only reveal time of implemented classification and preprocessing methods.
 \begin{itemize}
 	\item Preprocessing performance results are presented in table \ref{tabPreprocessing}. 
 	\begin{table}[H]
-	\begin{tabular}{ | l | l | l | l |}
+	\centering
+	\begin{tabular}{ | c | c | c | c |}
 		\hline
 		Operation & Time & Error & Unit\\ \hline		
-		\textbf{Algorithm \ref{alg:1st}} & 0,003 & 0,001 & ms/op \\
-		\textbf{Algorithm \ref{alg:2nd}} & 0,002 & 0,001 & ms/op \\		
+		\textbf{Example \ref{alg:1st}} & 0,003 & 0,001 & ms/op \\
+		\textbf{Example \ref{alg:2nd}} & 0,002 & 0,001 & ms/op \\		
 		\hline
 	\end{tabular}
 	\caption{Preprocessing performance results}
@@ -214,12 +217,13 @@ Performance was measured for one hundred iterations of classification method inv
 	\end{table}
 	\item Naive classifier performance results are presented in table \ref{tabNaive}.
 	\begin{table}[H]
-	\begin{tabular}{ | l | l | l | l |}
+	\centering
+	\begin{tabular}{ | c | c | c | c |}
 		\hline
 		Operation & Time & Error & Unit\\ \hline		
-		\textbf{Algorithm \ref{alg:3rd}} & 0,004 &  0,001 & ms/op \\
-		\textbf{Algorithm \ref{alg:4th}} & 0,003 &  0,001 & ms/op \\
-		\textbf{Algorithm \ref{alg:5th}} & 0,007 &  0,001 & ms/op \\
+		\textbf{Example \ref{alg:3rd}} & 0,004 &  0,001 & ms/op \\
+		\textbf{Example \ref{alg:4th}} & 0,003 &  0,001 & ms/op \\
+		\textbf{Example \ref{alg:5th}} & 0,007 &  0,001 & ms/op \\
 		\hline
 	\end{tabular}
 	\caption{Naive classifier performance results}
@@ -227,22 +231,23 @@ Performance was measured for one hundred iterations of classification method inv
 \end{table}
 	\item Semisupervised categorization results are presented in table \ref{tabSemi}.
 		\begin{table}[H]
-			\begin{tabular}{ | l | l | l | l |}
+			\centering
+			\begin{tabular}{ | c | c | c | c |}
 				\hline
 				Operation & Time & Error & Unit\\ \hline		
-				\textbf{Algorithm \ref{alg:6th}} & 0,001 &  0,001 & ms/op \\
-				\textbf{Algorithm \ref{alg:7th}} & 0,002 &  0,001 & ms/op \\
-				\textbf{Algorithm \ref{alg:8th}} & 0,003 &  0,001 & ms/op \\
+				\textbf{Example \ref{alg:6th}} & 0,001 &  0,001 & ms/op \\
+				\textbf{Example \ref{alg:7th}} & 0,002 &  0,001 & ms/op \\
+				\textbf{Example \ref{alg:8th}} & 0,003 &  0,001 & ms/op \\
 					\hline
 				\end{tabular}
 				\caption{Semi-supervised categorization performance results}
 				\label{tabSemi}
 			\end{table}
 \end{itemize}
-As performance results states the worst case scenario is when there is applied categorization method which is not intended for given kind of data (algorithm \ref{alg:5th}). The rest of results are on quite same level and does not cost much. Even worst case scenario is quite cheap solution for modern mobile devices and computers as all results are expressed in milliseconds. The biggest concern during consideration of presented test cases should be I/O time operation. This factor was not included as it was not purpose of this thesis. On the other hand when considering functionality and performance of whole information system this factor requires further investigation.
+As performance results states the worst case scenario is when there is applied categorization method which is not intended for given kind of data (example \ref{alg:5th}). The rest of results are on quite same level and does not cost much. Even worst case scenario is quite cheap solution for modern mobile devices and computers as all results are expressed in milliseconds. The biggest concern during consideration of presented test cases should be I/O time operation. This factor was not included as it was not purpose of this thesis. On the other hand when considering functionality and performance of whole information system this factor requires further investigation.
 
 \subsubsection{Hardware used for performance testing}
 All tests were executed on notebook with hardware parameters: CPU - Intel Core i7-4702MQ, 16 GB RAM, Graphic Card - GeForce GT 740M, HDD Hard Drive.
     
 \section{Conclusion}
-The purpose of this thesis was to provide overview of categorization methods using text analysis which can be useful during POI classification. As a result of this research there was developed loadstone database (using script \textit{createDB.sh}), Java library which delivers interface for \textit{loadstone} database access and provides categorization methods mainly customized for data included in database. Such customization was possible thanks to automatic analysis of phrase frequencies in database which functionality enables script \textit{analyzeDB.sh}. Library can be useful when developing applications using GPS systems to deliver information about POI in the neighbourhood. Main benefit of library is independence on data source so using specially designed interface there is possibility to deliver many kind of data sources and combine it in one application. The topic of POI categorization is wide and complex domain. This domain mainly involves text processing and heuristics about possible hints which can be used to obtain expected results. As presented in chapter section \ref{classification_results} result may differ according to applied categorization method. A lot of factors need to be considered when categorization task is applied like: language of input data, model of input data (it is possible to analyse whole documents or large fragment of texts or ready to use databases), size of input data (performance in complex information systems is one of significant factor). It is really difficult challenge to estimate what kind heuristics data can be obtained and work out system which would be versatile for every data source. Another important factor is choice of technology for such information system. Java possess high native library support and community as well \cite{24} \cite{25}. Unfortunately this involves a lot of research in internet to find suitable collection which can be used in implementation. What is more it is often practice that code construction is getting more complex and difficult to maintain in future. Example of such practice is returning classification result as \textit{list of categories} instead of using construction called \textit{tuple}. Such constructions are available in programming languages like: \textbf{Scala} \cite{26} or \textbf{Python} \cite{27}. What is more syntax of those programming languages is easier to read (it is possible to omit long-line Java syntax - not so huge effort is pushed on object encapsulation) and flexibility. Another important issue are external tools which could be used for easier maintenance of information system. Such tool could be \textit{Apache Spark} \cite{28}. It increases the performance of execution and is great manager for feature extraction, transformations or SVM. On the other hand this technology is quite new and requires significant effort at the beginning to use it.     
+The purpose of this thesis was to provide overview of categorization methods using text analysis which can be useful during POI classification. As a result of this research there was developed Loadstone database (using script \textit{createDB.sh}), Java library which delivers interface for \textit{Loadstone} database access and provides categorization methods mainly customized for data included in database. Such customization was possible thanks to automatic analysis of phrase frequencies in database which functionality enables script \textit{analyzeDB.sh}. Library can be useful when developing applications using GPS systems to deliver information about POI in the neighbourhood. Main benefit of library is independence on data source so using specially designed interface there is possibility to deliver many kind of data sources and combine it in one application. The topic of POI categorization is wide and complex domain. This domain mainly involves text processing and heuristics about possible hints which can be used to obtain expected results. As presented in chapter section \ref{classification_results} result may differ according to applied categorization method. A lot of factors need to be considered when categorization task is applied like: language of input data, model of input data (it is possible to analyse whole documents or large fragment of texts or ready to use databases), size of input data (performance in complex information systems is one of significant factor). It is really difficult challenge to estimate what kind heuristics data can be obtained and work out system which would be versatile for every data source. Another important factor is choice of technology for such information system. Java possess high native library support and community as well \cite{24}\cite{25}. Unfortunately this involves a lot of research in Internet to find suitable collection which can be used in implementation. What is more it is often practice that code construction is getting more complex and difficult to maintain in future. Example of such practice is returning classification result as \textit{list of categories} instead of using construction called \textit{tuple}. Such constructions are available in programming languages like: \textit{Scala} \cite{26} or \textit{Python} \cite{27}. What is more syntax of those programming languages is easier to read (it is possible to omit long-line Java syntax - not so huge effort is pushed on object encapsulation) and flexibility. Another important issue are external tools which could be used for easier maintenance of information system. Such tool could be \textit{Apache Spark} \cite{28}. It increases the performance of execution and is great manager for feature extraction, transformations or SVM. On the other hand this technology is quite new and requires significant effort at the beginning to use it.     
