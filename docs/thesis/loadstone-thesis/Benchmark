@@ -1,0 +1,16 @@
+Benchmark                                                            Mode  Cnt  Score    Error  Units
+NaiveClassifierBenchmark.shouldReturnCategoryA                       avgt  100  0,003 ±  0,001  ms/op
+NaiveClassifierBenchmark.shouldReturnCategoryC                       avgt  100  0,004 ±  0,001  ms/op
+NaiveClassifierBenchmark.shouldReturnCategoryNotClassified           avgt  100  0,001 ±  0,001  ms/op
+NaiveClassifierBenchmark.shouldReturnNotClassifiedDataFromLoadstone  avgt  100  0,007 ±  0,001  ms/op
+
+
+
+
+
+
+Benchmark                                                                              Mode  Cnt  Score    Error  Units
+LoadstoneSemiSupervisedClassifierBenchmark.shouldReturnCategoryK                       avgt  100  0,001 ±  0,001  ms/op
+LoadstoneSemiSupervisedClassifierBenchmark.shouldReturnCategoryK_I                     avgt  100  0,002 ±  0,001  ms/op
+LoadstoneSemiSupervisedClassifierBenchmark.shouldReturnCategoryNotClassified           avgt  100  0,003 ±  0,001  ms/op
+LoadstoneSemiSupervisedClassifierBenchmark.shouldReturnNotClassifiedDataFromLoadstone  avgt  100  0,005 ±  0,001  ms/op

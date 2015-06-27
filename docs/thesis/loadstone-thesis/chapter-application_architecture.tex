@@ -170,10 +170,11 @@ This class is a feature for semi-supervised classification. It is basically a ha
 
 \subsection{Class \newline loadstone.api.classification.NaiveClassifier}
 \label{naive_classifier}
-This class is implementing naive classification basing on descriptions from NACE categories class using Classifier interface. It analyses if data model name contains word which is included in particular category description. If data model name contains two or more words from distinct categories descriptions both of them are returned as possible categories to be assigned. This class is basing only on heuristic of NACE categories section: \ref{NACE} descriptions so can be used for any data source but categorization correctness may differ significantly on data source.
+This class is implementing naive classification basing on descriptions from NACE categories class (table \ref{tab:NaceMatching}) using Classifier interface. It analyses if data model name contains word which is included in particular category description. If data model name contains two or more words from distinct categories descriptions both of them are returned as possible categories to be assigned (under the condition these words have the same number of occurrence). In case of non-homogeneous phrases occurrence from distinct categories only this category is returned which was assigned to word with highest value of occurrences. This class is basing only on heuristic of NACE categories descriptions so can be used for any data source but categorization correctness may differ significantly on input data. 
 
 \subsection{Class \newline loadstone.api.classification.loadstone.\newline LoadstoneSemiSupervisedClassifier}
-Class which enables to classify POI using class LoadstoneBOW prepared previously. This class does not include descriptions from class NACE\_Categories. Only descriptions from LoadstoneBOW are taken into consideration. This class is implementing Classifier interface so it can be fluently used later in API.
+\label{semi_desc}
+Class which enables to classify POI using class LoadstoneBOW prepared previously. This class does not include descriptions from NACE categories descriptions (table \ref{tab:NaceMatching}). Only descriptions from LoadstoneBOW (table \ref{tab:BowMatching}) are taken into consideration. The rule of assignment to category is the same as in case of NaiveClassifier, so multiple categories can be returned as a result. This class is implementing Classifier interface so it can be fluently used later in API.
 
 \subsection{Class \newline loadstone.api.connection.loadstone.LoadstoneDatabase}
 This class takes responsibility for gathering Loadstone database. This class is implementing AbstractResourceConnection to get all possible entities from Loadstone database. 

@@ -70,7 +70,7 @@ Classification is much more complicated task than preprocessing. It involves com
 
     
 \subsection{Naive classifier categorization results}
-As mentioned in chapter section: \ref{naive_classifier} naive classification bases on heuristics inherited from NACE standard. As heuristic for unambiguous results it takes information about frequency of given phrase in NACE category description. When one heuristic overcome in frequency second heuristic the latter is rejected. Two of more categories as result are returned when frequency is the same for each of given heuristic. When heuristic is not available in input data classification is unavailable. The following example can be presented for imaginary data:
+As mentioned in section: \ref{naive_classifier} naive classification bases on heuristics inherited from NACE standard. As heuristic for unambiguous results it takes information about frequency of given phrase in NACE category description. When one heuristic overcome in frequency second heuristic the latter is rejected. Two of more categories as result are returned when frequency is the same for each of given heuristic. When heuristic is not available in input data classification is unavailable. The following example can be presented for imaginary data:
 \begin{algorithm}
 	\SetAlgorithmName{Example}{}
 	
@@ -98,7 +98,7 @@ As heuristic \textbf{\textit{"Manufacturing"}} frequency was the same as heurist
 
 \subsubsection{Naive classifier for Loadstone database}
 
-As heuristic is suit to data which are definitely not included in Loadstone database input data description (main issue comparison between English and polish language) naive classifier does not have significant utility during Loadstone database analysis. Example \ref{alg:6th} proves it:
+As heuristic is suit to data which are definitely not included in Loadstone database input data description (main issue is comparison between English and polish language) naive classifier does not have significant utility during Loadstone database analysis. Example \ref{alg:6th} proves it:
 \begin{algorithm}
 	\SetAlgorithmName{Example}{}
 	
@@ -199,6 +199,10 @@ Results of of ten most frequent phrases occurrences for text file containing onl
 	\label{tab2}
 \end{table}
 Obviously not all of them were included in bag of words for semi-supervised classification. All words with adjusted category were chosen empirically. In total to Loadstone bag of words there was included \textbf{72} words.
+
+\section{Naive and semi-supervised classification comparison}
+Two categorization methods which were implemented in Java library and are delivered through API may appear to be similar to each other. Both of them are using somehow defined heuristics and return result in form of previously defined category. Main which distinguish this methods is heuristic definition. In case of \textbf{naive classification} heuristic is imposed from very beginning. User does not have any influence on the form of given classification tips. In case of Java library implementation this may appear to be a drawback because tips for classification are defined in English language. However, naive method disqualify source data which are not defined in English language (such situation is presented in example \ref{alg:8th}). Possible solution would be to translate NACE categories description (table \ref{tab:NaceMatching}) to other languages. This may result in higher naive classification correctness. Naive classification details are described in section \ref{naive_classifier} . On the other hand user does not have to apply any hints for classification. \textbf{Semi-supervised} heuristic can be defined by user. If user performed analysis of input data before classification e.g. phrases frequency occurrence (like in case of this thesis) and defined internal BOW, results correctness should increase (as there not exists categorization method which would enable more accurate classification than human being). Additionally, initial BOW definition solves issue of input data language - human beings are able to define keywords hints for every language. Semi-supervised classification details are presented in section \ref{semi_desc}. This two methods present different approach to classification problem solution and should be used depending on the form of input data and user involvement.
+ 
 \section{Performance results}
 Performance was measured for one hundred iterations of classification method invokes. Additionally to assure results correctness five iterations were added at the beginning as a warm-up. During performance measurement time of data access to database was discarded. Performance results only reveal time of implemented classification and preprocessing methods.
 \begin{itemize}
