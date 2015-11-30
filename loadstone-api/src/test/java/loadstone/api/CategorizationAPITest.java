@@ -22,6 +22,7 @@ import static org.junit.Assert.assertEquals;
 public class CategorizationAPITest {
 
     private LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModel1;
+    private LoadstoneTotalDataObjectModel loadstoneTotalDataObjectModel2;
     private ArrayList patternsToBeTrimmedFromConsideredDataModel;
 
     @Before
@@ -29,10 +30,12 @@ public class CategorizationAPITest {
         patternsToBeTrimmedFromConsideredDataModel = new ArrayList();
         loadstoneTotalDataObjectModel1 = new LoadstoneTotalDataObjectModel();
         loadstoneTotalDataObjectModel1.setName("bankomat and pizza");
+        loadstoneTotalDataObjectModel2 = new LoadstoneTotalDataObjectModel();
+        loadstoneTotalDataObjectModel2.setName("dummy content");
     }
 
     @Test
-    public void shouldReturnCategoryNotClassified() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+    public void shouldReturnCategoryNotClassifiedForNaiveClassification() throws SQLException, NoSuchFieldException, ClassNotFoundException {
         CategorizationAPI categorizationAPI = new CategorizationAPI(new NaiveClassifier(), loadstoneTotalDataObjectModel1,
                 new LoadstonePreprocessing(patternsToBeTrimmedFromConsideredDataModel));
         System.out.println("Data model name before categorization process: " + categorizationAPI.getDataModel().getName());
@@ -43,7 +46,7 @@ public class CategorizationAPITest {
     }
 
     @Test
-    public void shouldReturnCategoryK_I() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+    public void shouldReturnCategoryK_I_ForSemiSupervisedClassifiaction() throws SQLException, NoSuchFieldException, ClassNotFoundException {
         CategorizationAPI categorizationAPI = new CategorizationAPI(new LoadstoneSemiSupervisedClassifier(), loadstoneTotalDataObjectModel1,
                 new LoadstonePreprocessing(patternsToBeTrimmedFromConsideredDataModel));
         System.out.println("Data model name before categorization process: " + categorizationAPI.getDataModel().getName());
@@ -51,6 +54,18 @@ public class CategorizationAPITest {
         System.out.println("Data model name after categorization process: " + categorizationAPI.getDataModel().getName());
         System.out.println("Classified categories" + nace_categories.toString());
         Assertions.assertThat(nace_categories).containsExactly(NACE_Categories.I, NACE_Categories.K);
+
+    }
+
+    @Test
+    public void shouldReturnCategoryNotClassifiedForSemiSupervisedClassification() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+        CategorizationAPI categorizationAPI = new CategorizationAPI(new LoadstoneSemiSupervisedClassifier(), loadstoneTotalDataObjectModel2,
+                new LoadstonePreprocessing(patternsToBeTrimmedFromConsideredDataModel));
+        System.out.println("Data model name before categorization process: " + categorizationAPI.getDataModel().getName());
+        List<NACE_Categories> nace_categories = categorizationAPI.categorize();
+        System.out.println("Data model name after categorization process: " + categorizationAPI.getDataModel().getName());
+        System.out.println("Classified categories" + nace_categories.toString());
+        Assertions.assertThat(nace_categories).containsExactly(NACE_Categories.NOT_CLASSIFIED);
 
     }
 

@@ -27,7 +27,7 @@ public class LoadstonePreprocessingTest {
     }
 
     @Test
-    public void preprocessWholeDataBaseLoadstoneFromUl() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+    public void shouldPreprocessLoadstoneDataModel() throws SQLException, NoSuchFieldException, ClassNotFoundException {
 
         LoadstonePreprocessing preprocessing = new LoadstonePreprocessing(patterns);
         DataModel dataModel = new LoadstoneTotalDataObjectModel();
@@ -37,7 +37,17 @@ public class LoadstonePreprocessingTest {
     }
 
     @Test
-    public void preprocessLoadstoneDataModelCollection() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+    public void shouldPreprocessLoadstoneDataModelAndRemoveNothing() throws SQLException, NoSuchFieldException, ClassNotFoundException {
+
+        LoadstonePreprocessing preprocessing = new LoadstonePreprocessing(patterns);
+        DataModel dataModel = new LoadstoneTotalDataObjectModel();
+        dataModel.setName("fake name to be trimmed everything remain the same as it was set");
+        DataModel preprocessedLoadstoneDataModel = preprocessing.preprocessDataModel(dataModel);
+        assertEquals("fake name to be trimmed everything remain the same as it was set", preprocessedLoadstoneDataModel.getName());
+    }
+
+    @Test
+    public void shouldPreprocessLoadstoneDataModelCollection() throws SQLException, NoSuchFieldException, ClassNotFoundException {
         LoadstonePreprocessing preprocessing = new LoadstonePreprocessing(patterns);
         DataModel dataModelOld = new LoadstoneTotalDataObjectModel();
         dataModelOld.setName("adres ul. czechy 246");
